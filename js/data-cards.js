@@ -52,5 +52,14 @@ window.CARDS = [
     title2: "AKSÂ",
     description: "Müslümanların Kudüs'te bulunan ilk kıblesi, en kutsal sayılan üç mescidden biri.",
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Jerusalem-2013-Temple_Mount-Al-Aqsa_Mosque_%28NE_exposure%29.jpg/1280px-Jerusalem-2013-Temple_Mount-Al-Aqsa_Mosque_%28NE_exposure%29.jpg"
-  }
+  },
+   {
+  id: "ayasofya",                 // ← önemli: dosya ismi de bu olacak
+  place: "İstanbul - Türkiye",
+  title: "AYASOFYA",
+  title2: "CAMİİ",
+  description: "İstanbul'un simgesi, tarihî cami ve müze.",
+  image: "https://...ayasofya.jpg"
+},
+   
 ];
