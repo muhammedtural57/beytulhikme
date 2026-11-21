@@ -546,6 +546,62 @@ async function openArticleById(id) {
   closeMobileMenu();
 }
 
+function initSearch() {
+  const input = _("search-input");
+  const results = _("search-results");
+  if (!input || !results) return;
+
+  input.addEventListener("input", () => {
+    const q = input.value.trim().toLocaleLowerCase("tr");
+    if (q.length < 2) {
+      results.classList.remove("show");
+      results.innerHTML = "";
+      return;
+    }
+
+    const matches = (window.ARTICLES_INDEX || []).filter(a =>
+      a.title.toLocaleLowerCase("tr").includes(q) ||
+      a.place.toLocaleLowerCase("tr").includes(q)
+    ).slice(0, 12);
+
+    if (matches.length === 0) {
+      results.innerHTML = `<div class="search-item"><div class="info"><div class="title">Sonuç bulunamadı</div></div></div>`;
+      results.classList.add("show");
+      return;
+    }
+
+    results.innerHTML = matches.map(a => `
+      <div class="search-item" data-id="${a.id}">
+        <img src="${a.image}" alt="">
+        <div class="info">
+          <div class="title">${a.title}</div>
+          <div class="place">${a.place}</div>
+        </div>
+      </div>
+    `).join("");
+
+    results.classList.add("show");
+
+    results.querySelectorAll(".search-item").forEach(el => {
+      el.onclick = () => {
+        const id = el.dataset.id;
+        if (id) {
+          openArticleById(id);
+          input.value = "";
+          results.classList.remove("show");
+        }
+      };
+    });
+  });
+
+  // Dışarı tıklayınca kapat
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".search-box")) {
+      results.classList.remove("show");
+    }
+  });
+}
+
 
 async function start() {
   try {
