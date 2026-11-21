@@ -46,7 +46,7 @@ window.ARTICLES["mescid-i-aksa"] = {
       caption: "Mescid-i Aksâ"
     },
     {
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Dome_of_the_Rock_viewed_from_the_Mount_of_Olives.jpg/640px-Dome_of_the_Rock_viewed_from_the_Mount_of_Olives.jpg",
+      url: "https://cdn.vuslat.org.tr/upload/images/haberler/kudus-ve-mescid-i-aksanin-onemi-1.webp",
       caption: "Kubbetü's-Sahre"
     }
   ]
