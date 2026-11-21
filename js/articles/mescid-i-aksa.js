@@ -42,7 +42,7 @@ window.ARTICLES["mescid-i-aksa"] = {
   videos: ["Ol2LGO7Nl6c"],
   media: [
     {
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Jerusalem-2013-Temple_Mount-Al-Aqsa_Mosque_%28NE_exposure%29.jpg/640px-Jerusalem-2013-Temple_Mount-Al-Aqsa_Mosque_%28NE_exposure%29.jpg",
+      url: "https://share.google/NB3rCpfalc1MchhgO",
       caption: "Mescid-i Aksâ"
     },
     {
