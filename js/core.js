@@ -402,6 +402,151 @@ _("nav-home").addEventListener("click", (e) => { e.preventDefault(); closeArticl
 _("mobile-menu-btn").addEventListener("click", openMobileMenu);
 _("sidebar-overlay").addEventListener("click", closeMobileMenu);
 
+function buildAccordion() {
+  const list = window.ARTICLES_INDEX || [];
+  // Alfabetik sırala
+  const sorted = [...list].sort((a, b) => a.title.localeCompare(b.title, "tr"));
+
+  // Harfe göre grupla
+  const groups = {};
+  sorted.forEach(item => {
+    const letter = item.title.charAt(0).toLocaleUpperCase("tr");
+    if (!groups[letter]) groups[letter] = [];
+    groups[letter].push(item);
+  });
+
+  const container = _("accordion-list");
+  if (!container) return;
+  container.innerHTML = "";
+
+  Object.keys(groups).sort((a, b) => a.localeCompare(b, "tr")).forEach(letter => {
+    const group = document.createElement("div");
+    group.className = "accordion-group";
+
+    const header = document.createElement("div");
+    header.className = "accordion-header";
+    header.innerHTML = `<span>${letter}</span><span class="arrow">▶</span>`;
+
+    const body = document.createElement("div");
+    body.className = "accordion-body";
+
+    groups[letter].forEach(item => {
+      const el = document.createElement("div");
+      el.className = "accordion-item";
+      el.innerHTML = `<img src="${item.image}" alt=""><span>${item.title}</span>`;
+      el.onclick = () => openArticleById(item.id);
+      body.appendChild(el);
+    });
+
+    header.onclick = () => {
+      header.classList.toggle("open");
+      body.classList.toggle("open");
+    };
+
+    group.appendChild(header);
+    group.appendChild(body);
+    container.appendChild(group);
+  });
+}
+
+async function openArticleById(id) {
+  // Önce kartlarda var mı bak
+  let idx = data.findIndex(c => c.id === id);
+  if (idx >= 0) {
+    await openArticle(idx);
+    return;
+  }
+  // Kartlarda yoksa index'ten bulup sahte index ile aç
+  const item = (window.ARTICLES_INDEX || []).find(a => a.id === id);
+  if (!item) return;
+
+  // Geçici olarak data'ya eklemeden direkt açmak için
+  // openArticle mantığını id üzerinden çalıştırıyoruz
+  isArticleOpen = true;
+  stopLoop();
+  clicks = 0;
+  history.pushState({ page: "article", id }, "", `#/article/${id}`);
+
+  let articleData;
+  try {
+    articleData = await loadArticle(id);
+  } catch (e) {
+    articleData = {
+      arabic: "",
+      lead: item.place,
+      author: "—",
+      relatedFile: item.place,
+      related: [],
+      sections: [{ id: "overview", title: "Genel Bakış", content: item.place }],
+      videos: [],
+      media: []
+    };
+  }
+
+  _("article-title").textContent = item.title;
+  _("article-arabic").textContent = articleData.arabic || "";
+  _("article-lead").textContent = articleData.lead || item.place;
+  _("article-author").textContent = articleData.author || "—";
+  _("article-image").src = item.image;
+  _("article-image-caption").textContent = item.place;
+  _("related-file-title").textContent = articleData.relatedFile || item.place;
+
+  let body = "";
+  (articleData.sections || []).forEach(sec => {
+    body += `<h2 id="${sec.id}">${sec.title}</h2><p>${sec.content}</p>`;
+  });
+  _("article-body").innerHTML = body;
+
+  _("toc-list").innerHTML = (articleData.sections || []).map(sec =>
+    `<div class="toc-item" data-target="${sec.id}">${sec.title}</div>`
+  ).join("");
+  document.querySelectorAll(".toc-item").forEach(el => {
+    el.onclick = () => {
+      const t = document.getElementById(el.dataset.target);
+      if (t) t.scrollIntoView({ behavior: "smooth" });
+      document.querySelectorAll(".toc-item").forEach(x => x.classList.remove("active"));
+      el.classList.add("active");
+      closeMobileMenu();
+    };
+  });
+
+  const relatedHTML = (articleData.related || []).map(r =>
+    `<div class="related-item"><h4>${r.title}</h4><p>${r.text}</p></div>`
+  ).join("");
+  _("related-articles").innerHTML = relatedHTML;
+
+  const mediaHTML = (articleData.media || []).map(m =>
+    `<img src="${m.url}" alt="${m.caption}" title="${m.caption}">`
+  ).join("");
+  _("media-grid").innerHTML = mediaHTML;
+  _("media-box").style.display = (articleData.media || []).length ? "block" : "none";
+
+  const vids = articleData.videos || [];
+  _("video-section").style.display = vids.length ? "block" : "none";
+  _("video-playlist").innerHTML = vids.map(vid => `
+    <div class="video-item">
+      <iframe src="https://www.youtube.com/embed/${vid}?playsinline=1&rel=0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen loading="lazy"></iframe>
+    </div>`).join("");
+
+  _("mobile-right-content").innerHTML = `
+    <div class="main-image-box"><img src="${item.image}" alt=""><div class="image-caption">${item.place}</div></div>
+    <div class="related-box">
+      <div class="related-label">BU MADDE</div>
+      <div class="related-title">${articleData.relatedFile || item.place}</div>
+      <div class="related-sub">DOSYASINDA YER ALMAKTADIR.</div>
+    </div>
+    <div class="related-articles">${relatedHTML}</div>
+  `;
+
+  document.getElementById("slider-view").classList.add("hidden");
+  document.getElementById("article-view").classList.remove("hidden");
+  document.querySelector(".article-main").scrollTop = 0;
+  closeMobileMenu();
+}
+
+
 async function start() {
   try {
     await Promise.all(data.map(d => new Promise(res => {
