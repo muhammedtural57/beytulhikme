@@ -42,7 +42,7 @@ window.ARTICLES["mescid-i-aksa"] = {
   videos: ["Ol2LGO7Nl6c"],
   media: [
     {
-      url: "https://share.google/NB3rCpfalc1MchhgO",
+      url: "https://share.google/X6x8CTqy0sz1QD9Te",
       caption: "Mescid-i Aksâ"
     },
     {
