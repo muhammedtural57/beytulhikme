@@ -59,7 +59,7 @@ window.CARDS = [
   title: "AYASOFYA",
   title2: "CAMİİ",
   description: "İstanbul'un simgesi, tarihî cami ve müze.",
-  image: "https://...ayasofya.jpg"
+  image: "https://ayasofyacamii.gov.tr/Uploads/anadoluimages_20117148.jpg"
 }
    
 ];
