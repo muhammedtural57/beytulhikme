@@ -42,7 +42,7 @@ window.ARTICLES["mescid-i-aksa"] = {
   videos: ["Ol2LGO7Nl6c"],
   media: [
     {
-      url: "https://share.google/X6x8CTqy0sz1QD9Te",
+      url: "http://i.haber7.com//haber/haber7/photos/2017/49/zQRHA_1512634211_4999.jpg",
       caption: "Mescid-i Aksâ"
     },
     {
