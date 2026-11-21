@@ -626,3 +626,5 @@ async function start() {
   init();
 }
 start();
+buildAccordion();
+initSearch();
