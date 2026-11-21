@@ -1,10 +1,3 @@
-/* ============================================================
-   core.js
-   - Kartları data-cards.js'den alır
-   - Makale detayını js/articles/ID.js dosyasından dinamik yükler
-   - History API + donma düzeltmesi + YouTube
-   ============================================================ */
-
 const SETTINGS = {
   autoInterval: 60,
   cardWidth: 200,
@@ -30,7 +23,6 @@ let loopTimer = null;
 
 const { cardWidth, cardHeight, gap, numberSize, ease, startDelay, autoInterval } = SETTINGS;
 
-/* DOM oluştur */
 _("demo").innerHTML = data.map((i, index) =>
   `<div class="card" id="card${index}" style="background-image:url(${i.image})"></div>`
 ).join("") + data.map((i, index) => `
@@ -59,7 +51,6 @@ function getOffsets() {
   return { top: h - 430, left: w - 830, cW: cardWidth, cH: cardHeight, g: gap };
 }
 
-/* ========== Makale dosyasını dinamik yükle ========== */
 function loadArticle(id) {
   return new Promise((resolve, reject) => {
     if (window.ARTICLES[id]) {
@@ -77,7 +68,6 @@ function loadArticle(id) {
   });
 }
 
-/* ========== SLIDER MOTORU ========== */
 function init() {
   const [active, ...rest] = order;
   const detailsActive = detailsEven ? "#details-even" : "#details-odd";
@@ -185,6 +175,71 @@ function step() {
   });
 }
 
+function stepPrev() {
+  if (isArticleOpen) return Promise.resolve();
+  return new Promise(resolve => {
+    order.unshift(order.pop());
+    detailsEven = !detailsEven;
+    const detailsActive = detailsEven ? "#details-even" : "#details-odd";
+    const detailsInactive = detailsEven ? "#details-odd" : "#details-even";
+    const off = getOffsets();
+
+    document.querySelector(`${detailsActive} .place-box .text`).textContent = data[order[0]].place;
+    document.querySelector(`${detailsActive} .title-1`).textContent = data[order[0]].title;
+    document.querySelector(`${detailsActive} .title-2`).textContent = data[order[0]].title2;
+    document.querySelector(`${detailsActive} .desc`).textContent = data[order[0]].description;
+
+    gsap.set(detailsActive, { zIndex: 22 });
+    gsap.to(detailsActive, { opacity: 1, delay: 0.35, ease });
+    gsap.to(`${detailsActive} .text`, { y: 0, delay: 0.08, duration: 0.6, ease });
+    gsap.to(`${detailsActive} .title-1`, { y: 0, delay: 0.12, duration: 0.6, ease });
+    gsap.to(`${detailsActive} .title-2`, { y: 0, delay: 0.12, duration: 0.6, ease });
+    gsap.to(`${detailsActive} .desc`, { y: 0, delay: 0.25, duration: 0.4, ease });
+    gsap.to(`${detailsActive} .cta`, { y: 0, delay: 0.3, duration: 0.4, onComplete: resolve, ease });
+    gsap.set(detailsInactive, { zIndex: 12 });
+
+    const [active, ...rest] = order;
+    const prv = rest[rest.length - 1];
+
+    gsap.set(getCard(prv), { zIndex: 10 });
+    gsap.set(getCard(active), { zIndex: 20 });
+    gsap.to(getCard(prv), { scale: 1.4, ease });
+    gsap.to(getCardContent(active), { y: offsetTop + off.cH - 10, opacity: 0, duration: 0.25, ease });
+    gsap.to(getSliderItem(active), { x: 0, ease });
+    gsap.to(getSliderItem(prv), { x: -numberSize, ease });
+    gsap.to(".progress-sub-foreground", { width: ((active + 1) / order.length * 100) + "%", ease });
+
+    gsap.to(getCard(active), {
+      x: 0, y: 0, ease,
+      width: window.innerWidth, height: window.innerHeight, borderRadius: 0,
+      onComplete: () => {
+        const xNew = offsetLeft + (rest.length - 1) * (off.cW + off.g);
+        gsap.set(getCard(prv), { x: xNew, y: offsetTop, width: off.cW, height: off.cH, zIndex: 30, borderRadius: 10, scale: 1 });
+        gsap.set(getCardContent(prv), { x: xNew, y: offsetTop + off.cH - 80, opacity: 1, zIndex: 40 });
+        gsap.set(getSliderItem(prv), { x: rest.length * numberSize });
+        gsap.set(detailsInactive, { opacity: 0 });
+        gsap.set(`${detailsInactive} .text`, { y: 40 });
+        gsap.set(`${detailsInactive} .title-1`, { y: 40 });
+        gsap.set(`${detailsInactive} .title-2`, { y: 40 });
+        gsap.set(`${detailsInactive} .desc`, { y: 30 });
+        gsap.set(`${detailsInactive} .cta`, { y: 30 });
+        clicks = Math.max(0, clicks - 1);
+        if (clicks > 0) stepPrev();
+      }
+    });
+
+    rest.forEach((i, index) => {
+      if (i !== prv) {
+        const xNew = offsetLeft + index * (off.cW + off.g);
+        gsap.set(getCard(i), { zIndex: 30 });
+        gsap.to(getCard(i), { x: xNew, y: offsetTop, width: off.cW, height: off.cH, ease, delay: 0.08 * (index + 1) });
+        gsap.to(getCardContent(i), { x: xNew, y: offsetTop + off.cH - 80, opacity: 1, zIndex: 40, ease, delay: 0.08 * (index + 1) });
+        gsap.to(getSliderItem(i), { x: (index + 1) * numberSize, ease });
+      }
+    });
+  });
+}
+
 function stopLoop() {
   loopRunning = false;
   if (loopTimer) { clearTimeout(loopTimer); loopTimer = null; }
@@ -205,7 +260,6 @@ function startLoop() {
   run();
 }
 
-/* ========== ARTICLE AÇMA ========== */
 async function openArticle(index) {
   const card = data[index];
   isArticleOpen = true;
@@ -297,7 +351,7 @@ async function openArticle(index) {
 
 function closeArticle() {
   isArticleOpen = false;
-  history.pushState({ page: "home" }, "", window.location.pathname);
+  history.pushState({ page: "home" }, "", window.location.pathname + window.location.search);
   document.getElementById("article-view").classList.add("hidden");
   document.getElementById("slider-view").classList.remove("hidden");
   closeMobileMenu();
@@ -309,7 +363,7 @@ window.addEventListener("popstate", (e) => {
     const idx = data.findIndex(c => c.id === e.state.id);
     if (idx >= 0) openArticle(idx);
   } else {
-    closeArticle();
+    if (isArticleOpen) closeArticle();
   }
 });
 
@@ -322,7 +376,6 @@ function closeMobileMenu() {
   _("sidebar-overlay").classList.remove("show");
 }
 
-/* Eventler */
 _("theme-toggle").addEventListener("click", () => {
   document.body.classList.toggle("light");
   const isLight = document.body.classList.contains("light");
@@ -331,7 +384,7 @@ _("theme-toggle").addEventListener("click", () => {
 });
 
 document.querySelector(".arrow-left").addEventListener("click", () => {
-  if (clicks === 0 && !isArticleOpen) { clicks = 1; step(); }
+  if (clicks === 0 && !isArticleOpen) { clicks = 1; stepPrev(); }
 });
 document.querySelector(".arrow-right").addEventListener("click", () => {
   if (clicks === 0 && !isArticleOpen) { clicks = 1; step(); }
@@ -356,6 +409,19 @@ async function start() {
       img.onload = res; img.onerror = res; img.src = d.image;
     })));
   } catch (e) {}
+
+  // F5 / yenileme: aynı makalede kal
+  const hash = window.location.hash;
+  if (hash && hash.startsWith("#/article/")) {
+    const id = hash.replace("#/article/", "");
+    const idx = data.findIndex(c => c.id === id);
+    if (idx >= 0) {
+      document.getElementById("slider-view").classList.add("hidden");
+      await openArticle(idx);
+      return;
+    }
+  }
+
   init();
 }
 start();
