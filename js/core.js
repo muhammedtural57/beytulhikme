@@ -404,10 +404,7 @@ _("sidebar-overlay").addEventListener("click", closeMobileMenu);
 
 function buildAccordion() {
   const list = window.ARTICLES_INDEX || [];
-  // Alfabetik sırala
   const sorted = [...list].sort((a, b) => a.title.localeCompare(b.title, "tr"));
-
-  // Harfe göre grupla
   const groups = {};
   sorted.forEach(item => {
     const letter = item.title.charAt(0).toLocaleUpperCase("tr");
@@ -415,7 +412,7 @@ function buildAccordion() {
     groups[letter].push(item);
   });
 
-  const container = _("accordion-list");
+  const container = document.getElementById("accordion-list");
   if (!container) return;
   container.innerHTML = "";
 
