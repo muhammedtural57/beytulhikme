@@ -346,7 +346,11 @@ function renderArticleSummary(cardLike, item) {
     ? `${cardLike.title} ${cardLike.title2}`.trim()
     : (cardLike.title || "");
 
-  const mainImg = cardLike.image || (item.media && item.media[0] && item.media[0].url) || "";
+  const mainImg =
+    cardLike.image ||
+    item.image ||
+    (item.media && item.media[0] && item.media[0].url) ||
+    "";
 
   const avatarImg = $("summary-image");
   if (avatarImg) {
