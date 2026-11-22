@@ -1,12 +1,3 @@
-/* ============================================================
-   articles-index.js
-   Tüm makalelerin özet listesi (arama + akordeon menü için)
-   Yeni makale eklerken:
-   1. Buraya özet ekle
-   2. js/articles/ID.js dosyasını oluştur
-   3. ÖNEMLİ ise data-cards.js'e de kart olarak ekle
-   ============================================================ */
-
 window.ARTICLES_INDEX = [
   {
     id: "saint-antonien",
@@ -44,12 +35,5 @@ window.ARTICLES_INDEX = [
     place: "Kudüs - Filistin",
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Jerusalem-2013-Temple_Mount-Al-Aqsa_Mosque_%28NE_exposure%29.jpg/640px-Jerusalem-2013-Temple_Mount-Al-Aqsa_Mosque_%28NE_exposure%29.jpg"
   }
-
-  // Yeni makale eklerken buraya da ekle:
-  // {
-  //   id: "ayasofya",
-  //   title: "AYASOFYA",
-  //   place: "İstanbul - Türkiye",
-  //   image: "https://...."
-  // }
+  // Yeni makale eklerken mutlaka buraya da ekle
 ];
