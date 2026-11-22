@@ -449,6 +449,20 @@ body {
   color: var(--text-muted);
 }
 
+.summary-hero-image {
+  margin-bottom: 14px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.summary-hero-image img {
+  width: 100%;
+  max-height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
 @media (max-width: 760px) {
   .article-summary-card {
     grid-template-columns: 1fr;
