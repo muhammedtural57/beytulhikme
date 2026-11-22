@@ -680,4 +680,11 @@ function start() {
     init();
   });
 }
+(function initLightThemeByDefault() {
+  document.body.classList.add("light");
+  var sun = document.querySelector(".icon-sun");
+  var moon = document.querySelector(".icon-moon");
+  if (sun) sun.classList.add("hidden");
+  if (moon) moon.classList.remove("hidden");
+})();
 start();
