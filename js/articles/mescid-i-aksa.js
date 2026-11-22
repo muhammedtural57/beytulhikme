@@ -9,6 +9,38 @@ window.ARTICLES["mescid-i-aksa"] = {
   lead: "Müslümanların Kudüs'te bulunan ilk kıblesi, en kutsal sayılan üç mescidden biri.",
   author: "NEBİ BOZKURT",
   relatedFile: "ÜÇ AYLAR ve RAMAZAN",
+  summaryItems: [
+    {
+      title: "İsim ve Anlamı",
+      text: "Beytülmakdis \"mukaddes ev\" demektir ve zamanla şehrin tamamını kapsamıştır; Aksâ ise Mekke'ye olan uzaklığını ifade eder.",
+      targetId: "isim"
+    },
+    {
+      title: "Kur'ân ve Hadislerdeki Yeri",
+      text: "İsrâ sûresinde çevresi mübarek kılınan mâbed olarak anılır; Mescid-i Harâm'dan sonra yapılan ikinci en eski mescid ve üç kutsal mâbedden biridir.",
+      targetId: "kurani"
+    },
+    {
+      title: "Tarihî Süreç ve İlk Mâbed",
+      text: "Yeri Hz. Dâvûd tarafından tespit ve planlanmış, mâbed Hz. Süleyman döneminde Lübnan'dan getirilen malzeme ve ustalarla inşa edilmiştir.",
+      targetId: "tarih"
+    },
+    {
+      title: "İstilâlar ve Yeniden İnşalar",
+      text: "Bâbil, Roma ve diğer istilâlarda yıkılıp yağmalanmış; Zerubbabel ve I. Herod dönemlerinde yeniden imar edilmiştir.",
+      targetId: "yikim-ve-yenilemeler"
+    },
+    {
+      title: "İslâm'daki Önemi ve İlk İmarlar",
+      text: "Müslümanların ilk kıblesi ve Mi'rac durağıdır; Hz. Ömer'in fethinden sonra Emevî ve Abbâsî dönemlerinde genişletilip onarılmıştır.",
+      targetId: "onem"
+    },
+    {
+      title: "Mimari Gelişimi ve Sonraki Dönemler",
+      text: "Eyyûbî, Memlük ve Osmanlı dönemlerinde restore edilmiş; 1922'de Mimar Kemâleddin Bey öncülüğünde kapsamlı onarım görmüştür.",
+      targetId: "mimari-ve-sonraki-donemler"
+    }
+  ],
   related: [
     { title: "KUBBETÜ'S-SAHRE", text: "Kudüs haremindeki kutsal kaya üzerinde yer alan yapı." },
     { title: "KUDÜS", text: "Üç ilâhî dinde de önemli sayılan şehir." }
