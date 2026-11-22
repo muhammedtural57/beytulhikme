@@ -392,8 +392,7 @@ function renderArticleSummary(cardLike, item) {
 }
 
 function renderArticleContent(cardLike, item) {
-  renderArticleSummary(cardLike, item);
-  _("article-title").textContent = cardLike.title2
+  renderArticleSummary(cardLike, item);  
   var fullTitle = cardLike.title2 ? cardLike.title + " " + cardLike.title2 : (cardLike.title || "");
   $("article-title").textContent = fullTitle;
   $("article-arabic").textContent = item.arabic || "";
