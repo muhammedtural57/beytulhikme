@@ -33,7 +33,7 @@ window.ARTICLES_INDEX = [
     id: "mescid-i-aksa",
     title: "MESCİD-i AKSÂ",
     place: "Kudüs - Filistin",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Jerusalem-2013-Temple_Mount-Al-Aqsa_Mosque_%28NE_exposure%29.jpg/640px-Jerusalem-2013-Temple_Mount-Al-Aqsa_Mosque_%28NE_exposure%29.jpg"
+    image: "https://cdn.vuslat.org.tr/upload/images/haberler/kudus-ve-mescid-i-aksanin-onemi-1.webp"
   }
   // Yeni makale eklerken mutlaka buraya da ekle
 ];
