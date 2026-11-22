@@ -425,16 +425,7 @@ body {
   padding-left: 16px;
 }
 
-.summary-section-item::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 6px;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--accent);
-}
+
 
 .summary-section-item h4 {
   font-size: 13.5px;
