@@ -659,6 +659,43 @@ function bindEvents() {
   if ($("sidebar-overlay")) $("sidebar-overlay").addEventListener("click", closeMobileMenu);
 }
 
+function initScrollTopButton() {
+  var btn = $("scroll-top-btn");
+  if (!btn) return;
+
+  var articleMain = document.querySelector(".article-main");
+
+  function getScrollPosition() {
+    var winY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+    var mainY = articleMain ? articleMain.scrollTop : 0;
+    return Math.max(winY, mainY);
+  }
+
+  function toggleVisibility() {
+    if (getScrollPosition() > 260) {
+      btn.classList.add("visible");
+    } else {
+      btn.classList.remove("visible");
+    }
+  }
+
+  btn.addEventListener("click", function () {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (articleMain) {
+      articleMain.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  });
+
+  window.addEventListener("scroll", toggleVisibility, { passive: true });
+  if (articleMain) {
+    articleMain.addEventListener("scroll", toggleVisibility, { passive: true });
+  }
+
+  document.addEventListener("click", function () {
+    setTimeout(toggleVisibility, 120);
+  });
+}
+
 function start() {
   var promises = data.map(function (d) {
     return new Promise(function (res) {
@@ -671,6 +708,7 @@ function start() {
     initLightboxControls();
     buildAccordion();
     initSearch();
+    initScrollTopButton();
     var hash = window.location.hash;
     if (hash && hash.indexOf("#/article/") === 0) {
       var id = hash.replace("#/article/", "");
@@ -680,6 +718,7 @@ function start() {
     init();
   });
 }
+
 (function initLightThemeByDefault() {
   document.body.classList.add("light");
   var sun = document.querySelector(".icon-sun");
@@ -687,4 +726,5 @@ function start() {
   if (sun) sun.classList.add("hidden");
   if (moon) moon.classList.remove("hidden");
 })();
+
 start();
