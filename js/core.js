@@ -20,6 +20,8 @@ let clicks = 0;
 let isArticleOpen = false;
 let loopRunning = false;
 let loopTimer = null;
+let galleryItems = [];
+let galleryIndex = 0;
 
 const { cardWidth, cardHeight, gap, numberSize, ease, startDelay, autoInterval } = SETTINGS;
 
@@ -36,6 +38,82 @@ _("demo").innerHTML = data.map((i, index) =>
 _("slide-numbers").innerHTML = data.map((_, index) =>
   `<div class="item" id="slide-item-${index}">${index + 1}</div>`
 ).join("");
+
+function openLightbox(items, startIndex) {
+  galleryItems = items || [];
+  galleryIndex = startIndex || 0;
+  const lb = document.getElementById("lightbox");
+  if (!lb || !galleryItems.length) return;
+  lb.classList.remove("hidden");
+  requestAnimationFrame(() => lb.classList.add("show"));
+  showLightboxImage();
+}
+
+function closeLightbox() {
+  const lb = document.getElementById("lightbox");
+  if (!lb) return;
+  lb.classList.remove("show");
+  setTimeout(() => lb.classList.add("hidden"), 300);
+}
+
+function showLightboxImage() {
+  const item = galleryItems[galleryIndex];
+  if (!item) return;
+  const img = document.getElementById("lightbox-img");
+  const cap = document.getElementById("lightbox-caption");
+  img.style.animation = "none";
+  void img.offsetWidth;
+  img.style.animation = "lbIn 0.35s ease";
+  img.src = item.url;
+  cap.textContent = item.caption || "";
+}
+
+function lightboxPrev() {
+  if (!galleryItems.length) return;
+  galleryIndex = (galleryIndex - 1 + galleryItems.length) % galleryItems.length;
+  showLightboxImage();
+}
+function lightboxNext() {
+  if (!galleryItems.length) return;
+  galleryIndex = (galleryIndex + 1) % galleryItems.length;
+  showLightboxImage();
+}
+
+function bindMediaClicks(mediaArray) {
+  const grid = document.getElementById("media-grid");
+  const mobileGrid = document.querySelector("#mobile-right-content .media-grid");
+  const bind = (container) => {
+    if (!container) return;
+    container.querySelectorAll("img").forEach((img, i) => {
+      img.style.cursor = "pointer";
+      img.onclick = () => openLightbox(mediaArray, i);
+    });
+  };
+  bind(grid);
+  bind(mobileGrid);
+}
+
+function initLightboxControls() {
+  const closeBtn = document.getElementById("lightbox-close");
+  const prevBtn = document.getElementById("lightbox-prev");
+  const nextBtn = document.getElementById("lightbox-next");
+  const lb = document.getElementById("lightbox");
+  if (closeBtn) closeBtn.onclick = closeLightbox;
+  if (prevBtn) prevBtn.onclick = lightboxPrev;
+  if (nextBtn) nextBtn.onclick = lightboxNext;
+  if (lb) {
+    lb.addEventListener("click", (e) => {
+      if (e.target === lb) closeLightbox();
+    });
+  }
+  document.addEventListener("keydown", (e) => {
+    const box = document.getElementById("lightbox");
+    if (!box || box.classList.contains("hidden")) return;
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowLeft") lightboxPrev();
+    if (e.key === "ArrowRight") lightboxNext();
+  });
+}
 
 function getCard(i) { return `#card${i}`; }
 function getCardContent(i) { return `#card-content-${i}`; }
