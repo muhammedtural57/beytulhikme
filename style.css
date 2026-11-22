@@ -703,6 +703,54 @@ body {
   color: var(--text-muted);
 }
 
+/* KRONOLOJİ DİKEY ÇİZGİSİNİ ZORLA GÖSTER VE HİZALA */
+.summary-sections {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-left: 28px;
+  margin-top: 12px;
+}
+
+.summary-section-item {
+  position: relative;
+  padding-bottom: 22px;
+  padding-left: 18px;
+}
+
+.summary-section-item:last-child {
+  padding-bottom: 4px;
+}
+
+.summary-section-item::before {
+  content: "" !important;
+  display: block !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 6px !important;
+  bottom: -16px !important;
+  width: 2px !important;
+  background: var(--border, #d8d8d8) !important;
+  z-index: 1 !important;
+}
+
+.summary-section-item:last-child::before {
+  display: none !important;
+}
+
+.summary-section-item::after {
+  content: "" !important;
+  display: block !important;
+  position: absolute !important;
+  left: -5px !important;
+  top: 5px !important;
+  width: 12px !important;
+  height: 12px !important;
+  border-radius: 50% !important;
+  background: var(--accent, #c78b00) !important;
+  z-index: 2 !important;
+}
+
 @media (max-width: 860px) {
   .scroll-top-btn {
     right: 14px;
