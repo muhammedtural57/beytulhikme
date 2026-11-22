@@ -27,8 +27,8 @@
       <div class="title-box-2"><div class="title-2">ANTONIEN</div></div>
       <div class="desc">Tucked away in the Switzerland Alps...</div>
       <div class="cta">
-        <button class="bookmark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M6.32 2.577a49.255 49.255 0 0111.36 0c1.497.174 2.57 1.46 2.57 2.93V21a.75.75 0 01-1.085.67L12 18.089l-7.165 3.583A.75.75 0 013.75 21V5.507c0-1.47 1.073-2.756 2.57-2.93z" clip-rule="evenodd"/></svg></button>
-        <button class="discover">Discover</button>
+        <button type="button" class="bookmark" aria-label="Kaydet"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M6.32 2.577a49.255 49.255 0 0111.36 0c1.497.174 2.57 1.46 2.57 2.93V21a.75.75 0 01-1.085.67L12 18.089l-7.165 3.583A.75.75 0 013.75 21V5.507c0-1.47 1.073-2.756 2.57-2.93z" clip-rule="evenodd"/></svg></button>
+        <button type="button" class="discover">Discover</button>
       </div>
     </div>
     <div class="details" id="details-odd">
@@ -37,13 +37,13 @@
       <div class="title-box-2"><div class="title-2">ANTONIEN</div></div>
       <div class="desc">Tucked away in the Switzerland Alps...</div>
       <div class="cta">
-        <button class="bookmark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M6.32 2.577a49.255 49.255 0 0111.36 0c1.497.174 2.57 1.46 2.57 2.93z" clip-rule="evenodd"/></svg></button>
-        <button class="discover">Discover</button>
+        <button type="button" class="bookmark" aria-label="Kaydet"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M6.32 2.577a49.255 49.255 0 0111.36 0c1.497.174 2.57 1.46 2.57 2.93z" clip-rule="evenodd"/></svg></button>
+        <button type="button" class="discover">Discover</button>
       </div>
     </div>
     <div class="pagination" id="pagination">
-      <div class="arrow arrow-left"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg></div>
-      <div class="arrow arrow-right"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></div>
+      <div class="arrow arrow-left" role="button" tabindex="0" aria-label="Önceki"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg></div>
+      <div class="arrow arrow-right" role="button" tabindex="0" aria-label="Sonraki"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></div>
       <div class="progress-sub-container"><div class="progress-sub-background"><div class="progress-sub-foreground"></div></div></div>
       <div class="slide-numbers" id="slide-numbers"></div>
     </div>
@@ -51,7 +51,7 @@
   </div>
 
   <div id="article-view" class="hidden">
-    <button id="mobile-menu-btn" class="mobile-only" aria-label="Menü">
+    <button type="button" id="mobile-menu-btn" class="mobile-only" aria-label="Menü">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
     </button>
 
@@ -62,11 +62,11 @@
           <span>Globe Express</span>
         </div>
         <div class="sidebar-actions">
-          <button id="theme-toggle" title="Tema">
+          <button type="button" id="theme-toggle" title="Tema">
             <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364 1.386l-1.591 1.591M21 12h-2.25m-1.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/></svg>
             <svg class="icon-moon hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"/></svg>
           </button>
-          <button id="back-btn" title="Geri">
+          <button type="button" id="back-btn" title="Geri">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg>
           </button>
         </div>
@@ -99,71 +99,46 @@
     </aside>
     <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
-    <div class="article-scroll">
-      <!-- Açılır kapanır bilgi kartı -->
-      <div class="book-wrap">
-        <button type="button" id="book-toggle" class="book-toggle" aria-expanded="true">
-          <span class="book-toggle-label">Bilgi kartı</span>
-          <span class="book-toggle-icon">▼</span>
-        </button>
-        <div class="book-page open" id="book-page">
-          <div class="book-left">
-            <div class="book-photo"><img id="book-image" src="" alt=""></div>
-            <h2 id="book-title"></h2>
-            <div class="book-arabic" id="book-arabic"></div>
-            <p class="book-place" id="book-place"></p>
-            <p class="book-lead" id="book-lead"></p>
-            <div class="book-author">Müellif: <strong id="book-author"></strong></div>
+    <div class="article-wrapper">
+      <main class="article-main">
+        <header class="dia-header">
+          <h1 id="article-title"></h1>
+          <div class="arabic-title" id="article-arabic"></div>
+          <p class="lead" id="article-lead"></p>
+          <div class="author-bar">
+            <div class="author-info">Müellif: <strong id="article-author"></strong></div>
           </div>
-          <div class="book-right">
-            <h3 class="book-right-title">İçerik</h3>
-            <div class="book-sections" id="book-sections"></div>
-          </div>
+        </header>
+        <div class="article-body" id="article-body"></div>
+        <section class="video-section" id="video-section">
+          <h2>Videolar</h2>
+          <div class="video-playlist" id="video-playlist"></div>
+        </section>
+        <div class="mobile-right-content" id="mobile-right-content"></div>
+      </main>
+      <aside class="right-panel">
+        <div class="main-image-box">
+          <img id="article-image" src="" alt="">
+          <div class="image-caption" id="article-image-caption"></div>
         </div>
-      </div>
-
-      <div class="article-body-row">
-        <main class="article-main">
-          <header class="dia-header">
-            <h1 id="article-title"></h1>
-            <div class="arabic-title" id="article-arabic"></div>
-            <p class="lead" id="article-lead"></p>
-            <div class="author-bar">
-              <div class="author-info">Müellif: <strong id="article-author"></strong></div>
-            </div>
-          </header>
-          <div class="article-body" id="article-body"></div>
-          <section class="video-section" id="video-section">
-            <h2>Videolar</h2>
-            <div class="video-playlist" id="video-playlist"></div>
-          </section>
-          <div class="mobile-right-content" id="mobile-right-content"></div>
-        </main>
-
-        <aside class="right-panel">
-          <div class="main-image-box">
-            <img id="article-image" src="" alt="">
-            <div class="image-caption" id="article-image-caption"></div>
-          </div>
-          <div class="related-box">
-            <div class="related-label">BU MADDE</div>
-            <div class="related-title" id="related-file-title"></div>
-            <div class="related-sub">DOSYASINDA YER ALMAKTADIR.</div>
-          </div>
-          <div class="related-articles" id="related-articles"></div>
-          <div class="media-box" id="media-box">
-            <h4>Görseller & Haritalar</h4>
-            <div class="media-grid" id="media-grid"></div>
-          </div>
-        </aside>
-      </div>
+        <div class="related-box">
+          <div class="related-label">BU MADDE</div>
+          <div class="related-title" id="related-file-title"></div>
+          <div class="related-sub">DOSYASINDA YER ALMAKTADIR.</div>
+        </div>
+        <div class="related-articles" id="related-articles"></div>
+        <div class="media-box" id="media-box">
+          <h4>Görseller &amp; Haritalar</h4>
+          <div class="media-grid" id="media-grid"></div>
+        </div>
+      </aside>
     </div>
   </div>
 
   <div id="lightbox" class="lightbox hidden">
-    <button class="lightbox-close" id="lightbox-close" type="button">×</button>
-    <button class="lightbox-prev" id="lightbox-prev" type="button">‹</button>
-    <button class="lightbox-next" id="lightbox-next" type="button">›</button>
+    <button type="button" class="lightbox-close" id="lightbox-close" aria-label="Kapat">×</button>
+    <button type="button" class="lightbox-prev" id="lightbox-prev" aria-label="Önceki">‹</button>
+    <button type="button" class="lightbox-next" id="lightbox-next" aria-label="Sonraki">›</button>
     <div class="lightbox-content">
       <img id="lightbox-img" src="" alt="">
       <div class="lightbox-caption" id="lightbox-caption"></div>
