@@ -680,44 +680,6 @@ async function openArticleById(id) {
     articleData
   );
 
-  function fillBookPage(cardLike, item) {
-  const book = document.getElementById("book-page");
-  if (!book) return;
-
-  const title = cardLike.title2
-    ? `${cardLike.title} ${cardLike.title2}`.trim()
-    : (cardLike.title || "");
-
-  const img = document.getElementById("book-image");
-  const t = document.getElementById("book-title");
-  const ar = document.getElementById("book-arabic");
-  const pl = document.getElementById("book-place");
-  const lead = document.getElementById("book-lead");
-  const au = document.getElementById("book-author");
-  const sec = document.getElementById("book-sections");
-
-  if (img) img.src = cardLike.image || "";
-  if (t) t.textContent = title;
-  if (ar) ar.textContent = item.arabic || "";
-  if (pl) pl.textContent = cardLike.place || "";
-  if (lead) lead.textContent = item.lead || cardLike.description || cardLike.place || "";
-  if (au) au.textContent = item.author || "—";
-
-  if (sec) {
-    sec.innerHTML = (item.sections || [])
-      .map((s) => {
-        const text = s.content || "";
-        const short = text.length > 200 ? text.substring(0, 200) + "..." : text;
-        return `<div class="book-section-item"><h4>${s.title}</h4><p>${short}</p></div>`;
-      })
-      .join("");
-  }
-
-  book.classList.remove("open");
-  void book.offsetWidth;
-  book.classList.add("open");
-}
-
   document.getElementById("slider-view").classList.add("hidden");
   document.getElementById("article-view").classList.remove("hidden");
   const main = document.querySelector(".article-main");
