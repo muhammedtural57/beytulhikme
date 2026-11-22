@@ -9,6 +9,7 @@
 </head>
 <body>
 
+  <!-- ========== ANA SAYFA (KARTLAR) ========== -->
   <div id="slider-view">
     <div class="indicator"></div>
     <nav class="top-nav">
@@ -50,6 +51,7 @@
     <div class="cover"></div>
   </div>
 
+  <!-- ========== MAKALE SAYFASI ========== -->
   <div id="article-view" class="hidden">
     <button id="mobile-menu-btn" class="mobile-only" aria-label="Menü">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
@@ -72,9 +74,8 @@
         </div>
       </div>
 
-      <!-- ARAMA -->
       <div class="search-box">
-        <input type="text" id="search-input" placeholder="Makale ara..." autocomplete="off">
+        <input type="text" id="search-input" placeholder="Makale ara (en az 2 harf)..." autocomplete="off">
         <div class="search-results" id="search-results"></div>
       </div>
 
@@ -85,13 +86,11 @@
         </a>
       </nav>
 
-      <!-- ALFABETİK AKORDEON MENÜ -->
       <div class="accordion-menu">
-        <div class="accordion-title">Tüm Maddeler</div>
+        <div class="accordion-title">Tüm Maddeler (A–Z)</div>
         <div id="accordion-list"></div>
       </div>
 
-      <!-- İçindekiler (makale açıkken) -->
       <div class="toc">
         <div class="toc-header">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
@@ -100,10 +99,25 @@
         <div class="toc-list" id="toc-list"></div>
       </div>
     </aside>
-
     <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
     <div class="article-wrapper">
+      <!-- KİTAP SAYFASI -->
+      <div class="book-page" id="book-page">
+        <div class="book-left">
+          <div class="book-photo"><img id="book-image" src="" alt=""></div>
+          <h2 id="book-title"></h2>
+          <div class="book-arabic" id="book-arabic"></div>
+          <p class="book-place" id="book-place"></p>
+          <p class="book-lead" id="book-lead"></p>
+          <div class="book-author">Müellif: <strong id="book-author"></strong></div>
+        </div>
+        <div class="book-right">
+          <h3 class="book-right-title">İçerik</h3>
+          <div class="book-sections" id="book-sections"></div>
+        </div>
+      </div>
+
       <main class="article-main">
         <header class="dia-header">
           <h1 id="article-title"></h1>
@@ -111,9 +125,6 @@
           <p class="lead" id="article-lead"></p>
           <div class="author-bar">
             <div class="author-info">Müellif: <strong id="article-author"></strong></div>
-            <div class="author-actions">
-              <button title="Yazdır"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a24.95 24.95 0 0110.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0l.229 2.523a1.125 1.125 0 01-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0021 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 00-1.913-.247M6.34 18H5.25A2.25 2.25 0 013 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 011.913-.247m10.5 0a48.536 48.536 0 00-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18.75 10.5h.008v.008h-.008V10.5zm-1.5 0h.008v.008h-.008V10.5z"/></svg></button>
-            </div>
           </div>
         </header>
         <div class="article-body" id="article-body"></div>
@@ -123,6 +134,7 @@
         </section>
         <div class="mobile-right-content" id="mobile-right-content"></div>
       </main>
+
       <aside class="right-panel">
         <div class="main-image-box">
           <img id="article-image" src="" alt="">
@@ -139,6 +151,17 @@
           <div class="media-grid" id="media-grid"></div>
         </div>
       </aside>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lightbox hidden">
+    <button class="lightbox-close" id="lightbox-close">×</button>
+    <button class="lightbox-prev" id="lightbox-prev">‹</button>
+    <button class="lightbox-next" id="lightbox-next">›</button>
+    <div class="lightbox-content">
+      <img id="lightbox-img" src="" alt="">
+      <div class="lightbox-caption" id="lightbox-caption"></div>
     </div>
   </div>
 
