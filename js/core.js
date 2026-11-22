@@ -368,13 +368,8 @@ function renderArticleSummary(cardLike, item) {
 
   const heroBox = $("summary-hero-image");
   if (heroBox) {
-    if (mainImg) {
-      heroBox.innerHTML = `<img src="${mainImg}" alt="${fullTitle}">`;
-      heroBox.style.display = "block";
-    } else {
-      heroBox.innerHTML = "";
-      heroBox.style.display = "none";
-    }
+    heroBox.innerHTML = "";
+    heroBox.style.display = "none";
   }
 
   const secBox = $("summary-sections");
@@ -425,8 +420,9 @@ function renderArticleSummary(cardLike, item) {
       });
     }
   }
+}
 
-function renderArticleContent(cardLike, item) { 
+function renderArticleContent(cardLike, item) {
   renderArticleSummary(cardLike, item);
   var fullTitle = cardLike.title2 ? cardLike.title + " " + cardLike.title2 : (cardLike.title || "");
   $("article-title").textContent = fullTitle;
@@ -490,7 +486,6 @@ function renderArticleContent(cardLike, item) {
   }
   bindMediaClicks(mediaList);
 }
-
 function openArticle(index) {
   var card = data[index];
   if (!card) return Promise.resolve();
