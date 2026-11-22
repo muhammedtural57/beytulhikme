@@ -379,21 +379,52 @@ function renderArticleSummary(cardLike, item) {
 
   const secBox = $("summary-sections");
   if (secBox) {
-    secBox.innerHTML = (item.sections || [])
-      .map((sec) => {
-        const plainText = (sec.content || "").replace(/<[^>]*>/g, "");
-        const excerpt = plainText.length > 130
-          ? plainText.slice(0, 130).trim() + "..."
-          : plainText;
-        return `
-          <div class="summary-section-item">
-            <h4>${sec.title}</h4>
-            <p>${excerpt}</p>
-          </div>`;
-      })
-      .join("");
+    const customItems = Array.isArray(item.summaryItems) && item.summaryItems.length
+      ? item.summaryItems
+      : null;
+
+    if (customItems) {
+      secBox.innerHTML = customItems
+        .map((entry) => {
+          const attr = entry.targetId ? ` data-target="${entry.targetId}" style="cursor:pointer;"` : "";
+          return `
+            <div class="summary-section-item"${attr}>
+              <h4>${entry.title || ""}</h4>
+              <p>${entry.text || ""}</p>
+            </div>`;
+        })
+        .join("");
+
+      secBox.querySelectorAll(".summary-section-item[data-target]").forEach((el) => {
+        el.addEventListener("click", function () {
+          const target = document.getElementById(this.getAttribute("data-target"));
+          if (target) target.scrollIntoView({ behavior: "smooth" });
+        });
+      });
+    } else {
+      secBox.innerHTML = (item.sections || [])
+        .map((sec) => {
+          const plainText = (sec.content || "").replace(/<[^>]*>/g, "");
+          const excerpt = plainText.length > 130
+            ? plainText.slice(0, 130).trim() + "..."
+            : plainText;
+          return `
+            <div class="summary-section-item" data-target="${sec.id || ""}" style="cursor:pointer;">
+              <h4>${sec.title}</h4>
+              <p>${excerpt}</p>
+            </div>`;
+        })
+        .join("");
+
+      secBox.querySelectorAll(".summary-section-item[data-target]").forEach((el) => {
+        el.addEventListener("click", function () {
+          const id = this.getAttribute("data-target");
+          const target = id ? document.getElementById(id) : null;
+          if (target) target.scrollIntoView({ behavior: "smooth" });
+        });
+      });
+    }
   }
-}
 
 function renderArticleContent(cardLike, item) { 
   renderArticleSummary(cardLike, item);
