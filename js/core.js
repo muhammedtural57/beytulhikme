@@ -346,7 +346,14 @@ function renderArticleSummary(cardLike, item) {
     ? `${cardLike.title} ${cardLike.title2}`.trim()
     : (cardLike.title || "");
 
-  if (_("summary-image")) _("summary-image").src = cardLike.image || "";
+  const mainImg = cardLike.image || (item.media && item.media[0] && item.media[0].url) || "";
+
+  const avatarImg = _("summary-image");
+  if (avatarImg) {
+    avatarImg.src = mainImg;
+    avatarImg.alt = fullTitle;
+  }
+
   if (_("summary-title")) _("summary-title").textContent = fullTitle;
   if (_("summary-arabic")) _("summary-arabic").textContent = item.arabic || "";
   if (_("summary-place")) _("summary-place").textContent = cardLike.place || "";
@@ -354,6 +361,17 @@ function renderArticleSummary(cardLike, item) {
     _("summary-lead").textContent = item.lead || cardLike.description || cardLike.place || "";
   }
   if (_("summary-author")) _("summary-author").textContent = item.author || "—";
+
+  const heroBox = _("summary-hero-image");
+  if (heroBox) {
+    if (mainImg) {
+      heroBox.innerHTML = `<img src="${mainImg}" alt="${fullTitle}">`;
+      heroBox.style.display = "block";
+    } else {
+      heroBox.innerHTML = "";
+      heroBox.style.display = "none";
+    }
+  }
 
   const secBox = _("summary-sections");
   if (secBox) {
