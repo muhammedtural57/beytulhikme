@@ -568,7 +568,7 @@ function buildAccordion() {
     group.className = "accordion-group";
     var header = document.createElement("div");
     header.className = "accordion-header";
-    header.innerHTML = "<span>" + letter + '</span><span class="arrow">▶</span>';
+    header.innerHTML = "<span>" + letter + '</span><span class="arrow">›</span>';
     var body = document.createElement("div");
     body.className = "accordion-body";
     groups[letter].forEach(function (item) {
