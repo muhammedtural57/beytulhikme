@@ -547,22 +547,26 @@ async function openArticleById(id) {
 }
 
 function initSearch() {
-  const input = _("search-input");
-  const results = _("search-results");
+  const input = document.getElementById("search-input");
+  const results = document.getElementById("search-results");
   if (!input || !results) return;
 
   input.addEventListener("input", () => {
     const q = input.value.trim().toLocaleLowerCase("tr");
+    const list = window.ARTICLES_INDEX || [];
+
     if (q.length < 2) {
       results.classList.remove("show");
       results.innerHTML = "";
       return;
     }
 
-    const matches = (window.ARTICLES_INDEX || []).filter(a =>
-      a.title.toLocaleLowerCase("tr").includes(q) ||
-      a.place.toLocaleLowerCase("tr").includes(q)
-    ).slice(0, 12);
+    const matches = list.filter(a => {
+      const t = (a.title || "").toLocaleLowerCase("tr");
+      const p = (a.place || "").toLocaleLowerCase("tr");
+      const id = (a.id || "").toLocaleLowerCase("tr");
+      return t.includes(q) || p.includes(q) || id.includes(q);
+    }).slice(0, 15);
 
     if (matches.length === 0) {
       results.innerHTML = `<div class="search-item"><div class="info"><div class="title">Sonuç bulunamadı</div></div></div>`;
@@ -579,22 +583,20 @@ function initSearch() {
         </div>
       </div>
     `).join("");
-
     results.classList.add("show");
 
     results.querySelectorAll(".search-item").forEach(el => {
-      el.onclick = () => {
-        const id = el.dataset.id;
+      el.addEventListener("click", () => {
+        const id = el.getAttribute("data-id");
         if (id) {
           openArticleById(id);
           input.value = "";
           results.classList.remove("show");
         }
-      };
+      });
     });
   });
 
-  // Dışarı tıklayınca kapat
   document.addEventListener("click", (e) => {
     if (!e.target.closest(".search-box")) {
       results.classList.remove("show");
