@@ -339,7 +339,7 @@ function startLoop() {
 }
 
 function renderArticleSummary(cardLike, item) {
-  const cardEl = _("article-summary-card");
+  const cardEl = $("article-summary-card");
   if (!cardEl) return;
 
   const fullTitle = cardLike.title2
@@ -348,21 +348,21 @@ function renderArticleSummary(cardLike, item) {
 
   const mainImg = cardLike.image || (item.media && item.media[0] && item.media[0].url) || "";
 
-  const avatarImg = _("summary-image");
+  const avatarImg = $("summary-image");
   if (avatarImg) {
     avatarImg.src = mainImg;
     avatarImg.alt = fullTitle;
   }
 
-  if (_("summary-title")) _("summary-title").textContent = fullTitle;
-  if (_("summary-arabic")) _("summary-arabic").textContent = item.arabic || "";
-  if (_("summary-place")) _("summary-place").textContent = cardLike.place || "";
-  if (_("summary-lead")) {
-    _("summary-lead").textContent = item.lead || cardLike.description || cardLike.place || "";
+  if ($("summary-title")) $("summary-title").textContent = fullTitle;
+  if ($("summary-arabic")) $("summary-arabic").textContent = item.arabic || "";
+  if ($("summary-place")) $("summary-place").textContent = cardLike.place || "";
+  if ($("summary-lead")) {
+    $("summary-lead").textContent = item.lead || cardLike.description || cardLike.place || "";
   }
-  if (_("summary-author")) _("summary-author").textContent = item.author || "—";
+  if ($("summary-author")) $("summary-author").textContent = item.author || "—";
 
-  const heroBox = _("summary-hero-image");
+  const heroBox = $("summary-hero-image");
   if (heroBox) {
     if (mainImg) {
       heroBox.innerHTML = `<img src="${mainImg}" alt="${fullTitle}">`;
@@ -373,7 +373,7 @@ function renderArticleSummary(cardLike, item) {
     }
   }
 
-  const secBox = _("summary-sections");
+  const secBox = $("summary-sections");
   if (secBox) {
     secBox.innerHTML = (item.sections || [])
       .map((sec) => {
