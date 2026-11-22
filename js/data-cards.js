@@ -4,7 +4,7 @@
    Yeni kart eklerken sadece buraya ekle.
    ============================================================ */
 
-window.CARDS = [
+window.CARDS = [  
   {
     id: "saint-antonien",
     place: "Switzerland Alps",
@@ -14,22 +14,6 @@ window.CARDS = [
     image: "https://assets.codepen.io/3685267/timed-cards-1.jpg"
   },
   {
-    id: "nagano",
-    place: "Japan Alps",
-    title: "NANGANO",
-    title2: "PREFECTURE",
-    description: "Nagano Prefecture, set within the majestic Japan Alps.",
-    image: "https://assets.codepen.io/3685267/timed-cards-2.jpg"
-  },
-  {
-    id: "merzouga",
-    place: "Sahara Desert - Morocco",
-    title: "MARRAKECH",
-    title2: "MEROUGA",
-    description: "From the souks of Marrakech to the sands of Merzouga.",
-    image: "https://assets.codepen.io/3685267/timed-cards-3.jpg"
-  },
-  {
     id: "yosemite",
     place: "Sierra Nevada - USA",
     title: "YOSEMITE",
@@ -37,14 +21,7 @@ window.CARDS = [
     description: "Yosemite National Park is a showcase of the American wilderness.",
     image: "https://assets.codepen.io/3685267/timed-cards-4.jpg"
   },
-  {
-    id: "tarifa",
-    place: "Tarifa - Spain",
-    title: "LOS LANCES",
-    title2: "BEACH",
-    description: "Los Lances Beach is a coastal paradise for kitesurfing.",
-    image: "https://assets.codepen.io/3685267/timed-cards-5.jpg"
-  },
+
   {
     id: "mescid-i-aksa",
     place: "Kudüs - Filistin",
