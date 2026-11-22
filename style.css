@@ -628,6 +628,81 @@ body {
   text-overflow: ellipsis;
 }
 
+/* ÖZET KARTI İÇERİK BÖLÜMÜ - KRONOLOJİ / ZAMAN ÇİZELGESİ */
+.summary-sections {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-left: 28px;
+  margin-top: 12px;
+}
+
+.summary-section-item {
+  position: relative;
+  padding-bottom: 22px;
+  padding-left: 18px;
+  transition: transform 0.18s ease;
+}
+
+.summary-section-item:last-child {
+  padding-bottom: 4px;
+}
+
+/* Dikey kronoloji çizgisi */
+.summary-section-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 6px;
+  bottom: -6px;
+  width: 2px;
+  background: var(--border);
+}
+
+/* Son öğede alt çizgiyi gizle */
+.summary-section-item:last-child::before {
+  display: none;
+}
+
+/* Nokta işareti */
+.summary-section-item::after {
+  content: "";
+  position: absolute;
+  left: -5px;
+  top: 5px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent, #c78b00);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent, #c78b00) 18%, transparent);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.summary-section-item:hover::after {
+  transform: scale(1.2);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent, #c78b00) 24%, transparent);
+}
+
+.summary-section-item h4 {
+  margin: 0 0 5px 0;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--text);
+  transition: color 0.18s ease;
+}
+
+.summary-section-item:hover h4 {
+  color: var(--accent, #c78b00);
+}
+
+.summary-section-item p {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
 @media (max-width: 860px) {
   .scroll-top-btn {
     right: 14px;
