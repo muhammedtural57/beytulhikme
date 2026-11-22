@@ -338,6 +338,41 @@ function startLoop() {
   run();
 }
 
+function renderArticleSummary(cardLike, item) {
+  const cardEl = _("article-summary-card");
+  if (!cardEl) return;
+
+  const fullTitle = cardLike.title2
+    ? `${cardLike.title} ${cardLike.title2}`.trim()
+    : (cardLike.title || "");
+
+  if (_("summary-image")) _("summary-image").src = cardLike.image || "";
+  if (_("summary-title")) _("summary-title").textContent = fullTitle;
+  if (_("summary-arabic")) _("summary-arabic").textContent = item.arabic || "";
+  if (_("summary-place")) _("summary-place").textContent = cardLike.place || "";
+  if (_("summary-lead")) {
+    _("summary-lead").textContent = item.lead || cardLike.description || cardLike.place || "";
+  }
+  if (_("summary-author")) _("summary-author").textContent = item.author || "—";
+
+  const secBox = _("summary-sections");
+  if (secBox) {
+    secBox.innerHTML = (item.sections || [])
+      .map((sec) => {
+        const plainText = (sec.content || "").replace(/<[^>]*>/g, "");
+        const excerpt = plainText.length > 130
+          ? plainText.slice(0, 130).trim() + "..."
+          : plainText;
+        return `
+          <div class="summary-section-item">
+            <h4>${sec.title}</h4>
+            <p>${excerpt}</p>
+          </div>`;
+      })
+      .join("");
+  }
+}
+
 function renderArticleContent(cardLike, item) {
   var fullTitle = cardLike.title2 ? cardLike.title + " " + cardLike.title2 : (cardLike.title || "");
   $("article-title").textContent = fullTitle;
