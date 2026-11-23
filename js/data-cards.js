@@ -6,23 +6,6 @@
 
 window.CARDS = [  
   {
-    id: "saint-antonien",
-    place: "Switzerland Alps",
-    title: "SAINT",
-    title2: "ANTONIEN",
-    description: "Tucked away in the Switzerland Alps, Saint Antönien offers an idyllic retreat.",
-    image: "https://assets.codepen.io/3685267/timed-cards-1.jpg"
-  },
-  {
-    id: "yosemite",
-    place: "Sierra Nevada - USA",
-    title: "YOSEMITE",
-    title2: "NATIONAL PARK",
-    description: "Yosemite National Park is a showcase of the American wilderness.",
-    image: "https://assets.codepen.io/3685267/timed-cards-4.jpg"
-  },
-
-  {
     id: "mescid-i-aksa",
     place: "Kudüs - Filistin",
     title: "MESCİD-i",
