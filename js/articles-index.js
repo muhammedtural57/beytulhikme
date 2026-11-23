@@ -1,6 +1,8 @@
-/* Not:
-
-*/
+/* ============================================================
+   articles-index.js
+   
+   Yeni makale eklerken sadece buraya ekle.
+   ============================================================ */
 window.ARTICLES_INDEX = [
   {
     id: "saint-antonien",
