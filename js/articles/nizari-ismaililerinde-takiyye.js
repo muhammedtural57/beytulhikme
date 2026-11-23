@@ -58,5 +58,8 @@ window.ARTICLES["nizari-ismaililerinde-takiyye"] = {
     }
   ],
   videos: [],
-  media: []
+  media: [{
+      url: "https://i.pinimg.com/1200x/7f/f3/c7/7ff3c781b3f13602ddeabf526259e2b2.jpg",
+      caption: "Nizariler"
+    },]
 };
