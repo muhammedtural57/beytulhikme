@@ -19,7 +19,7 @@ window.CARDS = [
   title: "AYASOFYA",
   title2: "CAMİİ",
   description: "İstanbul'un simgesi, tarihî cami ve müze.",
-  image: "https://files.akra.media/news/news-102570-img-1_b1e865a5-12ec-450d-8ba7-afea3d7f2f30.jpg"
+  image: "https://i.pinimg.com/1200x/7b/da/ef/7bdaefb40740e983f986b0124084b341.jpg"
 }
    
 ];
