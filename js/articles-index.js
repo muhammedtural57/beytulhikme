@@ -24,6 +24,14 @@ window.ARTICLES_INDEX = [
   title: "MESCİD-İ NEBEVÎ",  
   description: "Hz. Peygamber tarafından Medine'de inşa edilen, üç kutsal mescidden biri.",
   image: "https://cdn.islamansiklopedisi.org.tr/madde/29/mescid-i-nebevi-1.jpg"
+},
+   {
+  id: "nizari-ismaililerinde-takiyye", // ← önemli: dosya ismi de bu olacak
+  place: "Alamut - İran",
+  title: "NİZARÎ",
+  title2: "İSMAİLÎLERİ",
+  description: "1090-1257 arasında Alamut merkezli yapılanan Nizarî İsmâilîlerinde takiyye, meşruiyet ve tasavvuf ilişkisi.",
+  image: ""
 }
   // Yeni makale eklerken mutlaka buraya da ekle
 ];
