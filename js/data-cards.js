@@ -11,7 +11,7 @@ window.CARDS = [
     title: "MESCİD-i",
     title2: "AKSÂ",
     description: "Müslümanların Kudüs'te bulunan ilk kıblesi, en kutsal sayılan üç mescidden biri.",
-    image: "https://turkmaarifansiklopedisi.org.tr/uploads/matter/original/mescid-i-aksa-1679348f1ca1f1.webp"
+    image: "https://i.pinimg.com/1200x/13/b5/fd/13b5fdef92bdfa52b27217b361f8b08e.jpg"
   },
    {
   id: "ayasofya",                 // ← önemli: dosya ismi de bu olacak
