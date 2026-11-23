@@ -91,11 +91,11 @@ window.ARTICLES["ayasofya"] = {
   videos: [],
   media: [
     {
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Hagia_Sophia_Mars_2013.jpg/640px-Hagia_Sophia_Mars_2013.jpg",
+      url: "https://ayasofyacamii.gov.tr/Uploads/anadoluimages_20119235.jpg",
       caption: "Ayasofya genel görünüm"
     },
     {
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Hagia_Sophia_Interior.jpg/640px-Hagia_Sophia_Interior.jpg",
+      url: "https://cdn.gezelim.com/2023/11/batch_AA-20231122-32988234-32988220-AYASOFYAI_KEBIR_CAMII_SERIFI.jpg",
       caption: "Ayasofya iç mekân"
     }
   ]
