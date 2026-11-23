@@ -23,15 +23,8 @@ window.ARTICLES["ayasofya"] = {
     {
       title: "AYASOFYA KÜTÜPHANESİ",
       text: "Ayasofya Camii içinde Sultan I. Mahmud tarafından kurulmuştur; mimarisi ve zengin koleksiyonu ile dikkat çeker."
-    },
-    {
-      title: "AYASOFYA MEDRESESİ",
-      text: "Ayasofya Camii etrafında Türkler'in inşa ettiği külliye parçalarından biridir; fethin hemen ardından yapılmıştır."
-    },
-    {
-      title: "AYASOFYA MUVAKKİTHÂNESİ",
-      text: "Ayasofya Camii etrafında saatlerin muhafazası için yapılmış külliye birimidir."
     }
+    
   ],
   summaryItems: [
     {
