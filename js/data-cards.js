@@ -20,6 +20,14 @@ window.CARDS = [
   title2: "CAMİİ",
   description: "İstanbul'un simgesi, tarihî cami ve müze.",
   image: "https://i.pinimg.com/1200x/7b/da/ef/7bdaefb40740e983f986b0124084b341.jpg"
+},
+   {
+  id: "mescid-i-nebevi",        // ← önemli: dosya ismi de bu olacak
+  place: "Medine - Suudi Arabistan",
+  title: "MESCİD-İ",
+  title2: "NEBEVÎ",
+  description: "Hz. Peygamber tarafından Medine'de inşa edilen, üç kutsal mescidden biri.",
+  image: "https://cdn.islamansiklopedisi.org.tr/madde/29/mescid-i-nebevi-1.jpg"
 }
    
 ];
