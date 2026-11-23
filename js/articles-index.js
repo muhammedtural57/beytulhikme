@@ -3,37 +3,7 @@
    
    Yeni makale eklerken sadece buraya ekle.
    ============================================================ */
-window.ARTICLES_INDEX = [
-  {
-    id: "saint-antonien",
-    title: "SAINT ANTONIEN",
-    place: "Switzerland Alps",
-    image: "https://assets.codepen.io/3685267/timed-cards-1.jpg"
-  },
-  {
-    id: "nagano",
-    title: "NAGANO PREFECTURE",
-    place: "Japan Alps",
-    image: "https://assets.codepen.io/3685267/timed-cards-2.jpg"
-  },
-  {
-    id: "merzouga",
-    title: "MARRAKECH MEROUGA",
-    place: "Sahara Desert - Morocco",
-    image: "https://assets.codepen.io/3685267/timed-cards-3.jpg"
-  },
-  {
-    id: "yosemite",
-    title: "YOSEMITE NATIONAL PARK",
-    place: "Sierra Nevada - USA",
-    image: "https://assets.codepen.io/3685267/timed-cards-4.jpg"
-  },
-  {
-    id: "tarifa",
-    title: "LOS LANCES BEACH",
-    place: "Tarifa - Spain",
-    image: "https://assets.codepen.io/3685267/timed-cards-5.jpg"
-  },
+window.ARTICLES_INDEX = [  
   {
     id: "mescid-i-aksa",
     title: "MESCİD-i AKSÂ",
