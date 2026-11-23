@@ -27,7 +27,7 @@ window.CARDS = [
   title: "MESCİD-İ",
   title2: "NEBEVÎ",
   description: "Hz. Peygamber tarafından Medine'de inşa edilen, üç kutsal mescidden biri.",
-  image: "https://cdn.islamansiklopedisi.org.tr/madde/29/mescid-i-nebevi-1.jpg"
+  image: "https://i.pinimg.com/1200x/f6/92/af/f692afc1c1837d68d3e22c4853dd0958.jpg"
 }
    
 ];
