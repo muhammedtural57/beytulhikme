@@ -31,18 +31,6 @@ window.ARTICLES["ayasofya"] = {
     {
       title: "AYASOFYA MUVAKKİTHÂNESİ",
       text: "Ayasofya Camii etrafında saatlerin muhafazası için yapılmış külliye birimidir."
-    },
-    {
-      title: "AYASOFYA SEBİLLERİ",
-      text: "Ayasofya'ya komşu iki sebil binası; cami olarak vakfedilmesinden sonra inşa edilmiştir."
-    },
-    {
-      title: "AYASOFYA SIBYAN MEKTEBİ",
-      text: "Sultan I. Mahmud tarafından şadırvan, kütüphane ve aşhane-imaret ile birlikte 1155 (1742) yılına doğru yaptırılmıştır."
-    },
-    {
-      title: "AYASOFYA ŞADIRVANI",
-      text: "Sultan I. Mahmud tarafından 1153 (1740-41) yılında yaptırılan, Osmanlı sanatının en ihtişamlı şadırvan örneklerinden biridir."
     }
   ],
   summaryItems: [
@@ -65,6 +53,18 @@ window.ARTICLES["ayasofya"] = {
     {
       title: "AYASOFYA MUVAKKİTHÂNESİ",
       text: "Ayasofya Camii etrafında saatlerin muhafazası için yapılmış külliye birimidir."
+    },
+    {
+      title: "AYASOFYA SEBİLLERİ",
+      text: "Ayasofya'ya komşu iki sebil binası; cami olarak vakfedilmesinden sonra inşa edilmiştir."
+    },
+    {
+      title: "AYASOFYA SIBYAN MEKTEBİ",
+      text: "Sultan I. Mahmud tarafından şadırvan, kütüphane ve aşhane-imaret ile birlikte 1155 (1742) yılına doğru yaptırılmıştır."
+    },
+    {
+      title: "AYASOFYA ŞADIRVANI",
+      text: "Sultan I. Mahmud tarafından 1153 (1740-41) yılında yaptırılan, Osmanlı sanatının en ihtişamlı şadırvan örneklerinden biridir."
     }
       
   ],
