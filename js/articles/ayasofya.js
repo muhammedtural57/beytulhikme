@@ -10,7 +10,7 @@ window.ARTICLES["ayasofya"] = {
   arabic: "آيا صوفيا",
   lead: "Bizans devrinde İstanbul'un en büyük kilisesi iken fetihten sonra şehrin ulucamii haline getirilen ve etrafında zamanla bir külliye teşekkül eden mâbed.",
   author: "SEMAVİ EYİCE",
-  relatedFile: "İSTANBUL",
+  relatedFile: "AYASOFYA",
   related: [
     {
       title: "AYASOFYA HAMAMI",
