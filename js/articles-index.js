@@ -21,8 +21,7 @@ window.ARTICLES_INDEX = [
    {
   id: "mescid-i-nebevi",        // ← önemli: dosya ismi de bu olacak
   place: "Medine - Suudi Arabistan",
-  title: "MESCİD-İ",
-  title2: "NEBEVÎ",
+  title: "MESCİD-İ NEBEVÎ",  
   description: "Hz. Peygamber tarafından Medine'de inşa edilen, üç kutsal mescidden biri.",
   image: "https://cdn.islamansiklopedisi.org.tr/madde/29/mescid-i-nebevi-1.jpg"
 }
