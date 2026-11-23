@@ -40,6 +40,41 @@ window.ARTICLES["ayasofya"] = {
       text: "Sultan I. Mahmud tarafından 1153 (1740-41) yılında yaptırılan, Osmanlı sanatının en ihtişamlı şadırvan örneklerinden biridir."
     }
   ],
+  summaryItems: [
+    {
+      title: "AYASOFYA HAMAMI",
+      text: "Ayasofya Camii'nin karşısında inşa edilen XVI. yüzyıla ait bir çifte hamamdır."
+    },
+    {
+      title: "AYASOFYA İMARETİ",
+      text: "Sultan I. Mahmud tarafından Ayasofya Camii'nde girişilen büyük tamir ve ek binalar yapımı sırasında inşa edilmiştir."
+    },
+    {
+      title: "AYASOFYA KÜTÜPHANESİ",
+      text: "Ayasofya Camii içinde Sultan I. Mahmud tarafından kurulmuştur; mimarisi ve zengin koleksiyonu ile dikkat çeker."
+    },
+    {
+      title: "AYASOFYA MEDRESESİ",
+      text: "Ayasofya Camii etrafında Türkler'in inşa ettiği külliye parçalarından biridir; fethin hemen ardından yapılmıştır."
+    },
+    {
+      title: "AYASOFYA MUVAKKİTHÂNESİ",
+      text: "Ayasofya Camii etrafında saatlerin muhafazası için yapılmış külliye birimidir."
+    },
+    {
+      title: "AYASOFYA SEBİLLERİ",
+      text: "Ayasofya'ya komşu iki sebil binası; cami olarak vakfedilmesinden sonra inşa edilmiştir."
+    },
+    {
+      title: "AYASOFYA SIBYAN MEKTEBİ",
+      text: "Sultan I. Mahmud tarafından şadırvan, kütüphane ve aşhane-imaret ile birlikte 1155 (1742) yılına doğru yaptırılmıştır."
+    },
+    {
+      title: "AYASOFYA ŞADIRVANI",
+      text: "Sultan I. Mahmud tarafından 1153 (1740-41) yılında yaptırılan, Osmanlı sanatının en ihtişamlı şadırvan örneklerinden biridir."
+    }
+      
+  ],
   sections: [
     {
       id: "isim-ve-anlam",
