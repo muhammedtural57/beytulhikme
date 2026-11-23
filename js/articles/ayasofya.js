@@ -88,7 +88,7 @@ window.ARTICLES["ayasofya"] = {
       content: "Plan esas itibarıyla bazilika biçimindedir; orta mekânın üstü pandantiflerle desteklenen büyük bir kubbe ile örtülmüştür. Doğu-batı ekseninde kademeli yarım kubbeler, yanlarda galeriler ve kemer-tonoz sistemi ağırlığı karşılar. Gerek Bizans gerek Türk devrinde dışarıdan eklenen payandalar sayesinde yapı ayakta kalmıştır. İç süslemede Bizans mozaikleri ile Osmanlı dönemi çini, hat ve minber-mihrap düzenlemesi bir arada görülür."
     }
   ],
-  videos: ["JB6uTDQH5Ko"],
+  videos: ["JB6uTDQH5Ko", "gT_dMoFc_Rw"],
   media: [
     {
       url: "https://ayasofyacamii.gov.tr/Uploads/anadoluimages_20119235.jpg",
