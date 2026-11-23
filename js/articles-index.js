@@ -17,6 +17,14 @@ window.ARTICLES_INDEX = [
   title2: "CAMİİ",
   description: "İstanbul'un simgesi, tarihî cami ve müze.",
   image: "https://ayasofyacamii.gov.tr/Uploads/anadoluimages_20117148.jpg"
+},
+   {
+  id: "mescid-i-nebevi",        // ← önemli: dosya ismi de bu olacak
+  place: "Medine - Suudi Arabistan",
+  title: "MESCİD-İ",
+  title2: "NEBEVÎ",
+  description: "Hz. Peygamber tarafından Medine'de inşa edilen, üç kutsal mescidden biri.",
+  image: "https://cdn.islamansiklopedisi.org.tr/madde/29/mescid-i-nebevi-1.jpg"
 }
   // Yeni makale eklerken mutlaka buraya da ekle
 ];
