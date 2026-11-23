@@ -778,6 +778,44 @@ body:not(.light) .summary-section-item::before {
   background: #334155 !important;
 }
 
+/* IPAD YATAY MOD (768px - 1180px arası): SÜTUNLARI DAHA DENGELİ AYARLA */
+@media (min-width: 768px) and (max-width: 1180px) {
+  .sidebar {
+    width: 220px;
+  }
+
+  .right-panel {
+    width: 220px;
+    padding: 14px 12px;
+  }
+
+  .article-main {
+    padding: 16px 18px 40px;
+  }
+
+  .article-summary-card {
+    grid-template-columns: minmax(185px, 235px) 1fr;
+  }
+
+  .summary-left {
+    padding: 16px 12px;
+  }
+
+  .summary-avatar-wrap {
+    width: 88px;
+    height: 88px;
+  }
+
+  .summary-right {
+    padding: 16px 18px;
+  }
+
+  .summary-section-item p {
+    font-size: 12.5px;
+    line-height: 1.45;
+  }
+}
+
 @media (max-width: 860px) {
   .scroll-top-btn {
     right: 14px;
