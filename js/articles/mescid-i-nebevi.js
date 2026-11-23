@@ -83,7 +83,7 @@ window.ARTICLES["mescid-i-nebevi"] = {
       content: "Buhârî, “Fażlü’ṣ-ṣalât fî mescidi Mekke ve’l-Medîne”, 1-6, “Mesâcid”, 62, 65.<br><br>Müslim, “Mesâcid”, 1-3, “Ḥac”, 500-515.<br><br>İbn Sa‘d, eṭ-Ṭabaḳāt, I, 239-243.<br><br>İbn Şebbe, Târîḫu’l-Medîneti’l-münevvere (nşr. Fehîm Muhammed Şeltût), Cidde 1399/1979, I, 12-95.<br><br>Semhûdî, Vefâʾü’l-vefâ bi-aḫbâri dâri’l-Muṣṭafâ (nşr. M. Muhyiddin Abdülhamîd), Beyrut 1404/1984, I-II, bk. Fihrist.<br><br>Eyüp Sabri Paşa, Mir’âtü’l-Haremeyn: Mir’ât-ı Medîne, İstanbul 1304, s. 341-690.<br><br>K. A. C. Creswell, Early Muslim Architecture, Oxford 1969, I/1, s. 6-15, 142-149.<br><br>İbrâhim Rifat Paşa, Mir’âtü’l-Ḥaremeyn, Kahire 1344/1925, I, 369-410.<br><br>J. Sauvaget, La Mosquée omeyyade de Médine, Paris 1947.<br><br>M. İlyas Abdülganî, Târîḫu’l-Mescidi’n-Nebevî eş-şerîf, Medine 1416/1996.<br><br>Nebi Bozkurt, “Mescid-i Nebevî”, DİA, XXIX, 281-290."
     }
   ],
-  videos: ["G0M4lK6W-7Q"],
+  videos: ["R6m0MPLoOtM"],
   media: [
     {
       url: "https://cdn.islamansiklopedisi.org.tr/madde/29/mescid-i-nebevi-1.jpg",
