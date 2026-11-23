@@ -8,7 +8,7 @@ window.ARTICLES["mescid-i-aksa"] = {
   arabic: "المسجد الأقصى",
   lead: "Müslümanların Kudüs'te bulunan ilk kıblesi, en kutsal sayılan üç mescidden biri.",
   author: "NEBİ BOZKURT",
-  relatedFile: "ÜÇ AYLAR ve RAMAZAN",
+  relatedFile: "MESCİD-i AKSÂ",
   summaryItems: [
     {
       title: "İsim ve Anlamı",
