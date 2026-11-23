@@ -8,7 +8,7 @@ window.ARTICLES_INDEX = [
     id: "mescid-i-aksa",
     title: "MESCİD-i AKSÂ",
     place: "Kudüs - Filistin",
-    image: "https://cdn.vuslat.org.tr/upload/images/haberler/kudus-ve-mescid-i-aksanin-onemi-1.webp"
+    image: "https://i.pinimg.com/1200x/13/b5/fd/13b5fdef92bdfa52b27217b361f8b08e.jpg"
   },
   {
   id: "ayasofya",                 // ← önemli: dosya ismi de bu olacak
