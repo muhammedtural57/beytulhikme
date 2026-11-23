@@ -1,3 +1,6 @@
+/* Not:
+
+*/
 window.ARTICLES_INDEX = [
   {
     id: "saint-antonien",
