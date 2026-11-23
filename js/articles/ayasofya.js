@@ -8,16 +8,36 @@ window.ARTICLES["ayasofya"] = {
   relatedFile: "İSTANBUL",
   related: [
     {
-      title: "FATİH SULTAN MEHMED",
-      text: "İstanbul'u fethederek Ayasofya'yı camiye çeviren Osmanlı padişahı."
+      title: "AYASOFYA HAMAMI",
+      text: "Ayasofya Camii'nin karşısında inşa edilen XVI. yüzyıla ait bir çifte hamamdır."
     },
     {
-      title: "MİMAR SİNAN",
-      text: "Ayasofya'ya takviye payandaları ve minare ekleyen büyük Osmanlı mimarı."
+      title: "AYASOFYA İMARETİ",
+      text: "Sultan I. Mahmud tarafından Ayasofya Camii'nde girişilen büyük tamir ve ek binalar yapımı sırasında inşa edilmiştir."
     },
     {
-      title: "AYA İRİNİ",
-      text: "Ayasofya'nın yanında bulunan, Bizans döneminden kalma başka bir büyük kilise."
+      title: "AYASOFYA KÜTÜPHANESİ",
+      text: "Ayasofya Camii içinde Sultan I. Mahmud tarafından kurulmuştur; mimarisi ve zengin koleksiyonu ile dikkat çeker."
+    },
+    {
+      title: "AYASOFYA MEDRESESİ",
+      text: "Ayasofya Camii etrafında Türkler'in inşa ettiği külliye parçalarından biridir; fethin hemen ardından yapılmıştır."
+    },
+    {
+      title: "AYASOFYA MUVAKKİTHÂNESİ",
+      text: "Ayasofya Camii etrafında saatlerin muhafazası için yapılmış külliye birimidir."
+    },
+    {
+      title: "AYASOFYA SEBİLLERİ",
+      text: "Ayasofya'ya komşu iki sebil binası; cami olarak vakfedilmesinden sonra inşa edilmiştir."
+    },
+    {
+      title: "AYASOFYA SIBYAN MEKTEBİ",
+      text: "Sultan I. Mahmud tarafından şadırvan, kütüphane ve aşhane-imaret ile birlikte 1155 (1742) yılına doğru yaptırılmıştır."
+    },
+    {
+      title: "AYASOFYA ŞADIRVANI",
+      text: "Sultan I. Mahmud tarafından 1153 (1740-41) yılında yaptırılan, Osmanlı sanatının en ihtişamlı şadırvan örneklerinden biridir."
     }
   ],
   sections: [
@@ -39,7 +59,7 @@ window.ARTICLES["ayasofya"] = {
     {
       id: "osmanli-ilaveleri",
       title: "Osmanlı İlaveleri",
-      content: "Kanûnî Süleyman Budin fethinden getirilen tunç şamdanları mihrabın yanına koydurmuştur. II. Selim, III. Murad ve III. Mehmed için türbeler inşa edilmiş; III. Murad zamanında kuzeydeki iki minare, minber, kürsü ve mahfil ile Bergama'dan getirilen iki büyük mermer küp eklenmiştir. Sultan I. Mahmud döneminde (XVIII. yüzyıl) büyük tamirat yapılmış; şadırvan, kütüphane, imaret ve sıbyan mektebi ile külliye tamamlanmıştır. 1934'e kadar şehrin ulucamii niteliğindeki başcamisi olarak hizmet vermiştir."
+      content: "Kanûnî Süleyman Budin fethinden getirilen tunç şamdanları mihrabın yanına koydurmuştur. II. Selim, III. Murad ve III. Mehmed için türbeler inşa edilmiş; III. Murad zamanında kuzeydeki iki minare, minber, kürsü ve mahfil ile Bergama'dan getirilen iki büyük mermer küp eklenmiştir. Sultan I. Mahmud döneminde büyük tamirat yapılmış; şadırvan, kütüphane, imaret ve sıbyan mektebi ile külliye tamamlanmıştır. 1934'e kadar şehrin ulucamii niteliğindeki başcamisi olarak hizmet vermiştir."
     },
     {
       id: "mimari",
