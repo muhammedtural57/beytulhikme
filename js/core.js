@@ -160,6 +160,18 @@ function init() {
   var off = getOffsets();
   offsetTop = off.top; offsetLeft = off.left;
 
+  var firstCard = data[active];
+  if (firstCard) {
+    var placeEl = document.querySelector(detailsActive + " .place-box .text");
+    var title1El = document.querySelector(detailsActive + " .title-1");
+    var title2El = document.querySelector(detailsActive + " .title-2");
+    var descEl = document.querySelector(detailsActive + " .desc");
+    if (placeEl) placeEl.textContent = firstCard.place || "";
+    if (title1El) title1El.textContent = firstCard.title || "";
+    if (title2El) title2El.textContent = firstCard.title2 || "";
+    if (descEl) descEl.textContent = firstCard.description || "";
+  }
+
   gsap.set("#pagination", { top: "auto", bottom: 20, left: 16, y: 0, opacity: 0, zIndex: 60 });
   gsap.set(".top-nav", { y: -80, opacity: 0 });
   gsap.set(getCard(active), { x: 0, y: 0, width: width, height: window.innerHeight });
