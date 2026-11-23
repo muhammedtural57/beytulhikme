@@ -1,3 +1,8 @@
+/* ============================================================
+   related: sağdaki menülerin olduğu kısım
+   summaryItems: içerik bölümü, kısa özetlerin olduğu kısım
+   Dosya adı = id ile aynı olmalı (mescid-i-aksa.js)
+   ============================================================ */
 window.ARTICLES = window.ARTICLES || {};
 
 window.ARTICLES["ayasofya"] = {
