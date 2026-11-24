@@ -615,27 +615,63 @@ function buildAccordion() {
   var container = $("accordion-list");
   if (!container) return;
   container.innerHTML = "";
-  Object.keys(groups).sort(function (a, b) { return a.localeCompare(b, "tr"); }).forEach(function (letter) {
+
+  Object.keys(groups).sort(function (a, b) {
+    return a.localeCompare(b, "tr");
+  }).forEach(function (letter) {
     var group = document.createElement("div");
-    group.className = "accordion-group";
-    var header = document.createElement("div");
-    header.className = "accordion-header";
-    header.innerHTML = "<span>" + letter + '</span><span class="arrow">›</span>';
-    var body = document.createElement("div");
-    body.className = "accordion-body";
-    groups[letter].forEach(function (item) {
+    group.className = "accordion-group folder-group";
+
+    // Klasör başlığı
+    var header = document.createElement("button");
+    header.type = "button";
+    header.className = "accordion-header folder-header";
+    header.setAttribute("aria-expanded", "false");
+    header.innerHTML =
+      '<span class="folder-icon" aria-hidden="true">' +
+        '<svg class="folder-closed" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">' +
+          '<path d="M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/>' +
+        '</svg>' +
+        '<svg class="folder-open" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">' +
+          '<path d="M20 6h-8l-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/>' +
+        '</svg>' +
+      '</span>' +
+      '<span class="folder-letter">' + letter + '</span>' +
+      '<span class="folder-count">' + groups[letter].length + '</span>' +
+      '<span class="folder-chevron" aria-hidden="true">›</span>';
+
+    // Açılır panel (grid animasyonu için)
+    var panel = document.createElement("div");
+    panel.className = "accordion-panel";
+    var inner = document.createElement("div");
+    inner.className = "accordion-panel-inner";
+
+    groups[letter].forEach(function (item, idx) {
       var el = document.createElement("div");
       el.className = "accordion-item";
-      el.innerHTML = '<img src="' + item.image + '" alt=""><span>' + item.title + "</span>";
-      el.onclick = function () { openArticleById(item.id); };
-      body.appendChild(el);
+      el.style.setProperty("--i", idx); // stagger için
+      el.innerHTML =
+        '<img src="' + item.image + '" alt="">' +
+        '<span>' + item.title + '</span>';
+      el.onclick = function (e) {
+        e.stopPropagation();
+        openArticleById(item.id);
+      };
+      inner.appendChild(el);
     });
+
+    panel.appendChild(inner);
+
     header.onclick = function () {
-      header.classList.toggle("open");
-      body.classList.toggle("open");
+      var isOpen = group.classList.contains("open");
+      // İstersen tek açık kalsın: diğerlerini kapat
+      // container.querySelectorAll(".folder-group.open").forEach(function(g){ if(g!==group){ g.classList.remove("open"); g.querySelector(".folder-header").setAttribute("aria-expanded","false"); }});
+      group.classList.toggle("open", !isOpen);
+      header.setAttribute("aria-expanded", !isOpen ? "true" : "false");
     };
+
     group.appendChild(header);
-    group.appendChild(body);
+    group.appendChild(panel);
     container.appendChild(group);
   });
 }
