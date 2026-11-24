@@ -659,8 +659,19 @@ function closeArticle() {
 }
 
 window.addEventListener("popstate", function (e) {
-  if (e.state && e.state.page === "article") openArticleById(e.state.id);
-  else if (isArticleOpen) closeArticle();
+  if (e.state && e.state.page === "article") {
+    openArticleById(e.state.id);
+  } else if (e.state && e.state.page === "lessons") {
+    showView("lessons");
+  } else if (e.state && e.state.page === "lesson") {
+    showView("lessons");
+    // isteğe bağlı: unit’i tekrar aç
+  } else if (isArticleOpen) {
+    closeArticle();
+    showView("home");
+  } else {
+    showView("home");
+  }
 });
 
 function openMobileMenu() {
