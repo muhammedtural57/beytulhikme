@@ -1047,6 +1047,18 @@ body:not(.light) .summary-section-item::before { background: #334155; }
   .pagination { bottom: 12px; }
   #article-title { font-size: 22px; }
   .article-body { font-size: 15px; }
+
+  /* Mobil sidebar logo taşmasını önle */
+  .sidebar-header {
+    gap: 6px;
+    padding: 10px 10px;
+  }
+  .sidebar-actions {
+    gap: 6px;
+  }
+  .sidebar-logo span {
+    display: none;
+  }
 }
 
 @media (max-width: 760px) {
