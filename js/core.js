@@ -679,16 +679,6 @@ function initSearch() {
 }
 
 function bindEvents() {
-  if ($("theme-toggle")) {
-    $("theme-toggle").addEventListener("click", function () {
-      document.body.classList.toggle("light");
-      var isLight = document.body.classList.contains("light");
-      var sun = document.querySelector(".icon-sun");
-      var moon = document.querySelector(".icon-moon");
-      if (sun) sun.classList.toggle("hidden", isLight);
-      if (moon) moon.classList.toggle("hidden", !isLight);
-    });
-  }
   var left = document.querySelector(".arrow-left");
   var right = document.querySelector(".arrow-right");
   if (left) left.addEventListener("click", function () {
@@ -709,6 +699,35 @@ function bindEvents() {
   if ($("nav-home")) $("nav-home").addEventListener("click", function (e) { e.preventDefault(); closeArticle(); });
   if ($("mobile-menu-btn")) $("mobile-menu-btn").addEventListener("click", openMobileMenu);
   if ($("sidebar-overlay")) $("sidebar-overlay").addEventListener("click", closeMobileMenu);
+}
+
+function initThemeToggle() {
+  var btn = $("theme-toggle");
+  var starsBox = $("dnTrackStars");
+  if (!btn) return;
+
+  if (starsBox) {
+    var html = "";
+    for (var i = 0; i < 12; i++) {
+      var x = Math.random() * 100;
+      var y = Math.random() * 100;
+      var delay = (Math.random() * 3).toFixed(2);
+      html += '<span style="left:' + x + '%;top:' + y + '%;animation-delay:' + delay + 's"></span>';
+    }
+    starsBox.innerHTML = html;
+  }
+
+  function syncToggle() {
+    var isLight = document.body.classList.contains("light");
+    btn.setAttribute("aria-pressed", isLight ? "false" : "true");
+  }
+
+  btn.addEventListener("click", function () {
+    document.body.classList.toggle("light");
+    syncToggle();
+  });
+
+  syncToggle();
 }
 
 function initScrollTopButton() {
@@ -746,6 +765,8 @@ function initScrollTopButton() {
   document.addEventListener("click", function () {
     setTimeout(toggleVisibility, 120);
   });
+
+  toggleVisibility();
 }
 
 function start() {
@@ -757,6 +778,7 @@ function start() {
   });
   Promise.all(promises).catch(function () {}).then(function () {
     bindEvents();
+    initThemeToggle();
     initLightboxControls();
     buildAccordion();
     initSearch();
