@@ -788,6 +788,26 @@ function bindEvents() {
   if ($("mobile-menu-btn")) $("mobile-menu-btn").addEventListener("click", openMobileMenu);
   if ($("sidebar-overlay")) $("sidebar-overlay").addEventListener("click", closeMobileMenu);
   if ($("sidebar-close-btn")) $("sidebar-close-btn").addEventListener("click", closeMobileMenu);
+
+  // Üst menü
+  if ($("nav-home-top")) {
+    $("nav-home-top").addEventListener("click", function () {
+      showView("home");
+      history.pushState({ page: "home" }, "", window.location.pathname);
+    });
+  }
+  if ($("nav-lessons-top")) {
+    $("nav-lessons-top").addEventListener("click", function () {
+      showView("lessons");
+      history.pushState({ page: "lessons" }, "", "#/lessons");
+    });
+  }
+  if ($("lessons-back-home")) {
+    $("lessons-back-home").addEventListener("click", function () {
+      showView("home");
+      history.pushState({ page: "home" }, "", window.location.pathname);
+    });
+  }
 }
 
 var THEME_STORAGE_KEY = "beytulhikme-theme";
