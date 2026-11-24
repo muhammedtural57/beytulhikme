@@ -62,15 +62,20 @@
           <span>Beytü'l-Hikme | Ansiklopedi</span>
         </div>
         <div class="sidebar-actions">
-          <!-- YENİ NIGHT MODE TOGGLE -->
-          <button type="button" id="theme-toggle" class="night-toggle" title="Tema" aria-label="Tema değiştir">
-            <span class="night-toggle-track">
-              <span class="nt-stars" aria-hidden="true"></span>
-              <span class="nt-clouds" aria-hidden="true"></span>
-              <span class="nt-moon" aria-hidden="true"></span>
-              <span class="nt-sun" aria-hidden="true"></span>
-              <span class="nt-thumb" aria-hidden="true"></span>
+          <!-- ANIMASYONLU NIGHT MODE TOGGLE -->
+          <button type="button" id="theme-toggle" class="dn-switch" aria-pressed="false" aria-label="Tema değiştir" title="Tema">
+            <span class="dn-track">
+              <span class="dn-stars" id="dnTrackStars"></span>
+              <span class="dn-shooting">
+                <span class="dn-shoot s1"></span>
+                <span class="dn-shoot s2"></span>
+                <span class="dn-shoot s3"></span>
+              </span>
+              <span class="dn-moon" aria-hidden="true">🌙</span>
+              <span class="dn-sun" aria-hidden="true"></span>
+              <span class="dn-clouds" aria-hidden="true"></span>
             </span>
+            <span class="dn-knob" aria-hidden="true"></span>
           </button>
           <button type="button" id="back-btn" title="Geri">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg>
