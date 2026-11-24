@@ -932,6 +932,10 @@ function start() {
       document.getElementById("slider-view").classList.add("hidden");
       return openArticleById(id);
     }
+    if (hash && (hash === "#/lessons" || hash.indexOf("#/lesson/") === 0)) {
+      showView("lessons");
+      return;
+    }
     init();
   });
 }
