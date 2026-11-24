@@ -619,59 +619,74 @@ function buildAccordion() {
   Object.keys(groups).sort(function (a, b) {
     return a.localeCompare(b, "tr");
   }).forEach(function (letter) {
+    var items = groups[letter];
     var group = document.createElement("div");
-    group.className = "accordion-group folder-group";
+    group.className = "folder-card";
+    group.setAttribute("data-letter", letter);
 
-    // Klasör başlığı
-    var header = document.createElement("button");
-    header.type = "button";
-    header.className = "accordion-header folder-header";
-    header.setAttribute("aria-expanded", "false");
-    header.innerHTML =
-      '<span class="folder-icon" aria-hidden="true">' +
-        '<svg class="folder-closed" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">' +
-          '<path d="M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/>' +
-        '</svg>' +
-        '<svg class="folder-open" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">' +
-          '<path d="M20 6h-8l-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/>' +
-        '</svg>' +
-      '</span>' +
-      '<span class="folder-letter">' + letter + '</span>' +
-      '<span class="folder-count">' + groups[letter].length + '</span>' +
-      '<span class="folder-chevron" aria-hidden="true">›</span>';
+    // Kapalı klasör görünümü (tab + gövde + evrak kenarları)
+    var face = document.createElement("button");
+    face.type = "button";
+    face.className = "folder-face";
+    face.setAttribute("aria-expanded", "false");
+    face.innerHTML =
+      '<div class="folder-tab">' +
+        '<span class="folder-letter">' + letter + '</span>' +
+        '<span class="folder-count">' + items.length + '</span>' +
+      '</div>' +
+      '<div class="folder-body">' +
+        '<div class="paper paper-1"></div>' +
+        '<div class="paper paper-2"></div>' +
+        '<div class="paper paper-3"></div>' +
+        '<div class="folder-front">' +
+          '<span class="folder-label">Klasör</span>' +
+          '<span class="folder-chevron">›</span>' +
+        '</div>' +
+      '</div>';
 
-    // Açılır panel (grid animasyonu için)
-    var panel = document.createElement("div");
-    panel.className = "accordion-panel";
-    var inner = document.createElement("div");
-    inner.className = "accordion-panel-inner";
+    // Açık içerik (evrak listesi)
+    var drawer = document.createElement("div");
+    drawer.className = "folder-drawer";
+    var drawerInner = document.createElement("div");
+    drawerInner.className = "folder-drawer-inner";
 
-    groups[letter].forEach(function (item, idx) {
-      var el = document.createElement("div");
-      el.className = "accordion-item";
-      el.style.setProperty("--i", idx); // stagger için
-      el.innerHTML =
-        '<img src="' + item.image + '" alt="">' +
-        '<span>' + item.title + '</span>';
-      el.onclick = function (e) {
+    items.forEach(function (item, idx) {
+      var row = document.createElement("div");
+      row.className = "folder-doc";
+      row.style.setProperty("--i", idx);
+      row.innerHTML =
+        '<div class="doc-sheet">' +
+          '<img src="' + item.image + '" alt="">' +
+          '<div class="doc-info">' +
+            '<div class="doc-title">' + item.title + '</div>' +
+            '<div class="doc-place">' + (item.place || "") + '</div>' +
+          '</div>' +
+        '</div>';
+      row.onclick = function (e) {
         e.stopPropagation();
         openArticleById(item.id);
       };
-      inner.appendChild(el);
+      drawerInner.appendChild(row);
     });
 
-    panel.appendChild(inner);
+    drawer.appendChild(drawerInner);
 
-    header.onclick = function () {
-      var isOpen = group.classList.contains("open");
-      // İstersen tek açık kalsın: diğerlerini kapat
-      // container.querySelectorAll(".folder-group.open").forEach(function(g){ if(g!==group){ g.classList.remove("open"); g.querySelector(".folder-header").setAttribute("aria-expanded","false"); }});
-      group.classList.toggle("open", !isOpen);
-      header.setAttribute("aria-expanded", !isOpen ? "true" : "false");
+    face.onclick = function () {
+      var open = group.classList.contains("is-open");
+      // İstersen sadece bir klasör açık kalsın:
+      // container.querySelectorAll(".folder-card.is-open").forEach(function (g) {
+      //   if (g !== group) {
+      //     g.classList.remove("is-open");
+      //     var b = g.querySelector(".folder-face");
+      //     if (b) b.setAttribute("aria-expanded", "false");
+      //   }
+      // });
+      group.classList.toggle("is-open", !open);
+      face.setAttribute("aria-expanded", !open ? "true" : "false");
     };
 
-    group.appendChild(header);
-    group.appendChild(panel);
+    group.appendChild(face);
+    group.appendChild(drawer);
     container.appendChild(group);
   });
 }
