@@ -905,6 +905,174 @@ function start() {
   });
 }
 
+// ========== DERSLER VE NOTLARIM ==========
+function loadLesson(id) {
+  return new Promise(function (resolve, reject) {
+    if (window.LESSONS && window.LESSONS[id]) {
+      resolve(window.LESSONS[id]);
+      return;
+    }
+    var script = document.createElement("script");
+    script.src = "js/lessons/" + id + ".js";
+    script.onload = function () {
+      if (window.LESSONS && window.LESSONS[id]) resolve(window.LESSONS[id]);
+      else reject(new Error("Ders yok: " + id));
+    };
+    script.onerror = function () { reject(new Error("Dosya yok: " + id)); };
+    document.head.appendChild(script);
+  });
+}
+
+function showView(view) {
+  // view: "home" | "article" | "lessons"
+  var slider = $("slider-view");
+  var article = $("article-view");
+  var lessons = $("lessons-view");
+
+  if (slider) slider.classList.add("hidden");
+  if (article) article.classList.add("hidden");
+  if (lessons) lessons.classList.add("hidden");
+
+  document.querySelectorAll(".top-nav .nav-link").forEach(function (el) {
+    el.classList.toggle("active", el.getAttribute("data-view") === view);
+  });
+
+  if (view === "home") {
+    if (slider) slider.classList.remove("hidden");
+    isArticleOpen = false;
+    startLoop();
+  } else if (view === "lessons") {
+    if (lessons) lessons.classList.remove("hidden");
+    isArticleOpen = true;
+    stopLoop();
+    buildLessonsNav();
+  } else if (view === "article") {
+    if (article) article.classList.remove("hidden");
+    isArticleOpen = true;
+    stopLoop();
+  }
+}
+
+function buildLessonsNav() {
+  var list = window.LESSONS_INDEX || [];
+  var container = $("lessons-nav-list");
+  if (!container) return;
+  container.innerHTML = "";
+
+  list.forEach(function (cat) {
+    var box = document.createElement("div");
+    box.className = "lesson-cat";
+    box.setAttribute("data-id", cat.id);
+
+    var header = document.createElement("div");
+    header.className = "lesson-cat-header";
+    header.innerHTML =
+      '<span class="lesson-cat-icon">' + (cat.icon || "📁") + "</span>" +
+      '<span class="lesson-cat-title">' + cat.title + "</span>" +
+      '<span class="lesson-cat-arrow">›</span>';
+
+    var body = document.createElement("div");
+    body.className = "lesson-cat-body";
+
+    header.onclick = function () {
+      var open = header.classList.contains("open");
+      header.classList.toggle("open", !open);
+      body.classList.toggle("open", !open);
+
+      if (!open) {
+        // ilk açılışta ders dosyasını yükle
+        loadLesson(cat.id)
+          .then(function (lesson) {
+            renderLessonBooks(body, lesson, cat);
+          })
+          .catch(function () {
+            body.innerHTML = '<div style="padding:10px;font-size:12px;color:var(--text-muted)">Ders dosyası yüklenemedi.</div>';
+          });
+      }
+    };
+
+    box.appendChild(header);
+    box.appendChild(body);
+    container.appendChild(box);
+  });
+}
+
+function renderLessonBooks(container, lesson, catMeta) {
+  container.innerHTML = "";
+  (lesson.books || []).forEach(function (book) {
+    var bookEl = document.createElement("div");
+    bookEl.className = "lesson-book";
+
+    var title = document.createElement("div");
+    title.className = "lesson-book-title";
+    title.innerHTML = "📁 " + book.title;
+    bookEl.appendChild(title);
+
+    (book.units || []).forEach(function (unit) {
+      var row = document.createElement("div");
+      row.className = "lesson-unit";
+      row.innerHTML = "📄 " + unit.title;
+      row.onclick = function (e) {
+        e.stopPropagation();
+        openLessonUnit(lesson, book, unit, catMeta);
+        container.querySelectorAll(".lesson-unit").forEach(function (u) {
+          u.classList.remove("active");
+        });
+        row.classList.add("active");
+      };
+      bookEl.appendChild(row);
+    });
+
+    container.appendChild(bookEl);
+  });
+}
+
+function openLessonUnit(lesson, book, unit, catMeta) {
+  var empty = $("lessons-empty");
+  var content = $("lessons-content");
+  if (empty) empty.classList.add("hidden");
+  if (content) content.classList.remove("hidden");
+
+  if ($("lesson-unit-title")) $("lesson-unit-title").textContent = unit.title || "";
+  if ($("lesson-unit-meta")) {
+    $("lesson-unit-meta").textContent =
+      (catMeta.title || lesson.title || "") + " · " + (book.title || "");
+  }
+  if ($("lesson-unit-body")) {
+    $("lesson-unit-body").innerHTML = unit.content || "<p>Bu ünite için henüz not eklenmemiş.</p>";
+  }
+
+  history.pushState(
+    { page: "lesson", lessonId: lesson.id, bookId: book.id, unitId: unit.id },
+    "",
+    "#/lesson/" + lesson.id + "/" + book.id + "/" + unit.id
+  );
+}
+
+function start() {
+  var promises = data.map(function (d) {
+    return new Promise(function (res) {
+      var img = new Image();
+      img.onload = res; img.onerror = res; img.src = d.image;
+    });
+  });
+  Promise.all(promises).catch(function () {}).then(function () {
+    bindEvents();
+    initThemeToggle();
+    initLightboxControls();
+    buildAccordion();
+    initSearch();
+    initScrollTopButton();
+    var hash = window.location.hash;
+    if (hash && hash.indexOf("#/article/") === 0) {
+      var id = hash.replace("#/article/", "");
+      document.getElementById("slider-view").classList.add("hidden");
+      return openArticleById(id);
+    }
+    init();
+  });
+}
+
 (function initLightThemeByDefault() {
   applySavedTheme();
 })();
