@@ -701,6 +701,27 @@ function bindEvents() {
   if ($("sidebar-overlay")) $("sidebar-overlay").addEventListener("click", closeMobileMenu);
 }
 
+var THEME_STORAGE_KEY = "beytulhikme-theme";
+
+function applySavedTheme() {
+  var savedTheme = null;
+  try {
+    savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+  } catch (e) {}
+
+  var isLight = savedTheme !== "dark";
+  if (isLight) {
+    document.body.classList.add("light");
+  } else {
+    document.body.classList.remove("light");
+  }
+
+  var sun = document.querySelector(".icon-sun");
+  var moon = document.querySelector(".icon-moon");
+  if (sun) sun.classList.toggle("hidden", isLight);
+  if (moon) moon.classList.toggle("hidden", !isLight);
+}
+
 function initThemeToggle() {
   var btn = $("theme-toggle");
   var starsBox = $("dnTrackStars");
@@ -720,6 +741,9 @@ function initThemeToggle() {
   function syncToggle() {
     var isLight = document.body.classList.contains("light");
     btn.setAttribute("aria-pressed", isLight ? "false" : "true");
+    try {
+      localStorage.setItem(THEME_STORAGE_KEY, isLight ? "light" : "dark");
+    } catch (e) {}
   }
 
   btn.addEventListener("click", function () {
@@ -794,11 +818,7 @@ function start() {
 }
 
 (function initLightThemeByDefault() {
-  document.body.classList.add("light");
-  var sun = document.querySelector(".icon-sun");
-  var moon = document.querySelector(".icon-moon");
-  if (sun) sun.classList.add("hidden");
-  if (moon) moon.classList.remove("hidden");
+  applySavedTheme();
 })();
 
 start();
