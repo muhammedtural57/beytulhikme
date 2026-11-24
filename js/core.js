@@ -619,74 +619,41 @@ function buildAccordion() {
   Object.keys(groups).sort(function (a, b) {
     return a.localeCompare(b, "tr");
   }).forEach(function (letter) {
-    var items = groups[letter];
     var group = document.createElement("div");
-    group.className = "folder-card";
-    group.setAttribute("data-letter", letter);
+    group.className = "accordion-group";
 
-    // Kapalı klasör görünümü (tab + gövde + evrak kenarları)
-    var face = document.createElement("button");
-    face.type = "button";
-    face.className = "folder-face";
-    face.setAttribute("aria-expanded", "false");
-    face.innerHTML =
-      '<div class="folder-tab">' +
-        '<span class="folder-letter">' + letter + '</span>' +
-        '<span class="folder-count">' + items.length + '</span>' +
-      '</div>' +
-      '<div class="folder-body">' +
-        '<div class="paper paper-1"></div>' +
-        '<div class="paper paper-2"></div>' +
-        '<div class="paper paper-3"></div>' +
-        '<div class="folder-front">' +
-          '<span class="folder-label">Klasör</span>' +
-          '<span class="folder-chevron">›</span>' +
-        '</div>' +
-      '</div>';
+    var header = document.createElement("div");
+    header.className = "accordion-header";
+    header.innerHTML =
+      '<span class="acc-folder" aria-hidden="true">' +
+        '<svg class="f-closed" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">' +
+          '<path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/>' +
+        '</svg>' +
+        '<svg class="f-open" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">' +
+          '<path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/>' +
+        '</svg>' +
+      '</span>' +
+      '<span class="acc-letter">' + letter + '</span>' +
+      '<span class="arrow">›</span>';
 
-    // Açık içerik (evrak listesi)
-    var drawer = document.createElement("div");
-    drawer.className = "folder-drawer";
-    var drawerInner = document.createElement("div");
-    drawerInner.className = "folder-drawer-inner";
+    var body = document.createElement("div");
+    body.className = "accordion-body";
 
-    items.forEach(function (item, idx) {
-      var row = document.createElement("div");
-      row.className = "folder-doc";
-      row.style.setProperty("--i", idx);
-      row.innerHTML =
-        '<div class="doc-sheet">' +
-          '<img src="' + item.image + '" alt="">' +
-          '<div class="doc-info">' +
-            '<div class="doc-title">' + item.title + '</div>' +
-            '<div class="doc-place">' + (item.place || "") + '</div>' +
-          '</div>' +
-        '</div>';
-      row.onclick = function (e) {
-        e.stopPropagation();
-        openArticleById(item.id);
-      };
-      drawerInner.appendChild(row);
+    groups[letter].forEach(function (item) {
+      var el = document.createElement("div");
+      el.className = "accordion-item";
+      el.innerHTML = '<img src="' + item.image + '" alt=""><span>' + item.title + '</span>';
+      el.onclick = function () { openArticleById(item.id); };
+      body.appendChild(el);
     });
 
-    drawer.appendChild(drawerInner);
-
-    face.onclick = function () {
-      var open = group.classList.contains("is-open");
-      // İstersen sadece bir klasör açık kalsın:
-      // container.querySelectorAll(".folder-card.is-open").forEach(function (g) {
-      //   if (g !== group) {
-      //     g.classList.remove("is-open");
-      //     var b = g.querySelector(".folder-face");
-      //     if (b) b.setAttribute("aria-expanded", "false");
-      //   }
-      // });
-      group.classList.toggle("is-open", !open);
-      face.setAttribute("aria-expanded", !open ? "true" : "false");
+    header.onclick = function () {
+      header.classList.toggle("open");
+      body.classList.toggle("open");
     };
 
-    group.appendChild(face);
-    group.appendChild(drawer);
+    group.appendChild(header);
+    group.appendChild(body);
     container.appendChild(group);
   });
 }
