@@ -1053,6 +1053,7 @@ body:not(.light) .summary-section-item::before { background: #334155; }
   .desktop-only { display: none !important; }
   .mobile-only { display: grid; }
   #mobile-menu-btn { display: grid; }
+  body:has(.sidebar.open) #mobile-menu-btn { display: none; }
   .sidebar {
     position: fixed; left: -280px; top: 0; bottom: 0; width: 270px;
     transition: left 0.3s ease; box-shadow: 4px 0 20px rgba(0,0,0,0.3);
