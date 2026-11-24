@@ -415,11 +415,13 @@ body:not(.light) .dn-knob {
 .search-item .title { font-size: 13px; font-weight: 600; }
 .search-item .place { font-size: 11px; color: var(--text-muted); }
 
-/* ===== TÜm MADDELER (A–Z) — KLASÖR AÇILIR ANİMASYON ===== */
+/* =========================================================
+   TÜm MADDELER (A–Z) — GERÇEK KLASÖR + EVRAK ANİMASYONU
+   ========================================================= */
 .accordion-menu {
   padding: 12px 14px;
   border-bottom: 1px solid var(--border);
-  max-height: 42vh;
+  max-height: 48vh;
   overflow-y: auto;
 }
 
@@ -429,203 +431,272 @@ body:not(.light) .dn-knob {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin-bottom: 10px;
-  padding-left: 4px;
+  margin-bottom: 12px;
+  padding-left: 2px;
 }
 
 #accordion-list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 14px;
 }
 
-/* Klasör grubu */
-.folder-group {
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: var(--bg-card);
-  overflow: hidden;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+/* --- Klasör kartı --- */
+.folder-card {
+  position: relative;
+  perspective: 800px;
 }
 
-.folder-group:hover {
-  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
-}
-
-.folder-group.open {
-  border-color: color-mix(in srgb, var(--accent) 60%, var(--border));
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
-}
-
-/* Klasör başlığı */
-.folder-header {
+/* Kapalı yüz */
+.folder-face {
   width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 11px 14px;
   border: none;
+  padding: 0;
   background: transparent;
-  color: var(--text);
-  font-family: inherit;
-  font-size: 14px;
-  font-weight: 600;
   cursor: pointer;
   text-align: left;
-  transition: background 0.2s ease, color 0.2s ease;
-}
-
-.folder-header:hover {
-  background: color-mix(in srgb, var(--text) 4%, transparent);
-}
-
-.folder-group.open .folder-header {
-  color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 8%, transparent);
-  border-bottom: 1px solid var(--border);
-}
-
-/* Klasör ikonu */
-.folder-icon {
+  font-family: inherit;
+  display: block;
   position: relative;
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-  color: var(--accent);
+  z-index: 2;
 }
 
-.folder-icon svg {
-  position: absolute;
-  inset: 0;
-  width: 20px;
-  height: 20px;
-  transition: opacity 0.28s ease, transform 0.28s ease;
+/* Üst sekme (tab) */
+.folder-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 14px;
+  padding: 6px 14px 4px;
+  background: linear-gradient(180deg, #e8b84a 0%, #d4a017 100%);
+  color: #1a1200;
+  border-radius: 8px 8px 0 0;
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: 0 -1px 0 rgba(255,255,255,0.25) inset;
+  position: relative;
+  z-index: 3;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.folder-icon .folder-open {
-  opacity: 0;
-  transform: scale(0.85) translateY(2px);
-}
-
-.folder-group.open .folder-icon .folder-closed {
-  opacity: 0;
-  transform: scale(0.85) translateY(-2px);
-}
-
-.folder-group.open .folder-icon .folder-open {
-  opacity: 1;
-  transform: scale(1) translateY(0);
+body:not(.light) .folder-tab {
+  background: linear-gradient(180deg, #c9952a 0%, #a67c1a 100%);
+  color: #fff8e7;
 }
 
 .folder-letter {
-  flex: 1;
-  min-width: 0;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
 }
 
 .folder-count {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--text-muted);
-  background: color-mix(in srgb, var(--text) 6%, transparent);
-  padding: 2px 7px;
+  font-size: 10px;
+  font-weight: 700;
+  background: rgba(0,0,0,0.18);
+  color: inherit;
+  padding: 1px 6px;
   border-radius: 999px;
-  flex-shrink: 0;
 }
 
-.folder-group.open .folder-count {
-  color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 14%, transparent);
+/* Klasör gövdesi */
+.folder-body {
+  position: relative;
+  height: 52px;
+  margin-top: -1px;
+  border-radius: 0 12px 12px 12px;
+  background: linear-gradient(165deg, #f0c14d 0%, #d4a017 55%, #b8860b 100%);
+  box-shadow:
+    0 4px 12px rgba(0,0,0,0.18),
+    0 1px 0 rgba(255,255,255,0.2) inset;
+  overflow: hidden;
+  transition: height 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.3s ease,
+              transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Chevron */
+body:not(.light) .folder-body {
+  background: linear-gradient(165deg, #c9952a 0%, #a67c1a 55%, #8a6814 100%);
+}
+
+/* İçerden görünen evrak kenarları (kapalıyken) */
+.paper {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  height: 10px;
+  border-radius: 3px 3px 0 0;
+  background: #f7f3e8;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.12);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 0.3s ease;
+}
+
+body:not(.light) .paper {
+  background: #2a2a28;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.35);
+}
+
+.paper-1 { top: 6px;  transform: translateY(0) rotate(-0.6deg); opacity: 0.95; }
+.paper-2 { top: 12px; transform: translateY(0) rotate(0.4deg);  opacity: 0.8; }
+.paper-3 { top: 18px; transform: translateY(0) rotate(-0.3deg); opacity: 0.65; }
+
+/* Ön panel (etiket) */
+.folder-front {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(0,0,0,0.08));
+  border-top: 1px solid rgba(255,255,255,0.15);
+  color: #1a1200;
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 2;
+}
+
+body:not(.light) .folder-front {
+  color: #fff8e7;
+}
+
 .folder-chevron {
   font-size: 14px;
-  color: var(--text-muted);
-  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), color 0.2s ease;
-  flex-shrink: 0;
-  line-height: 1;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.folder-group.open .folder-chevron {
+/* Açık durum — klasör “kalkar”, evraklar dışarı çıkar */
+.folder-card.is-open .folder-tab {
+  transform: translateY(-2px);
+}
+
+.folder-card.is-open .folder-body {
+  height: 28px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.folder-card.is-open .paper-1 { transform: translateY(-18px) rotate(-1.2deg); opacity: 0; }
+.folder-card.is-open .paper-2 { transform: translateY(-14px) rotate(0.8deg);  opacity: 0; }
+.folder-card.is-open .paper-3 { transform: translateY(-10px) rotate(-0.5deg); opacity: 0; }
+
+.folder-card.is-open .folder-chevron {
   transform: rotate(90deg);
-  color: var(--accent);
 }
 
-/* Panel — klasör açılma (grid 0fr → 1fr) */
-.accordion-panel {
+/* Çekmece (içerik) — klasörün altından açılır */
+.folder-drawer {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: grid-template-rows 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+  margin-top: -4px;
+  position: relative;
+  z-index: 1;
 }
 
-.folder-group.open .accordion-panel {
+.folder-card.is-open .folder-drawer {
   grid-template-rows: 1fr;
 }
 
-.accordion-panel-inner {
+.folder-drawer-inner {
   overflow: hidden;
   min-height: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  padding: 0 8px;
   opacity: 0;
-  transform: translateY(-6px);
+  transform: translateY(-8px);
   transition:
-    opacity 0.28s ease,
-    transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
-  padding: 0 6px;
+    opacity 0.3s ease,
+    transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+    padding 0.3s ease;
 }
 
-.folder-group.open .accordion-panel-inner {
+.folder-card.is-open .folder-drawer-inner {
   opacity: 1;
   transform: translateY(0);
-  padding: 6px;
-  transition-delay: 0.04s;
+  padding: 10px 8px 8px;
+  transition-delay: 0.05s;
 }
 
-/* Madde satırları — stagger */
-.accordion-item {
+/* Evrak satırları */
+.folder-doc {
+  margin-bottom: 6px;
+  opacity: 0;
+  transform: translateY(12px) scale(0.98);
+  transition:
+    opacity 0.3s ease,
+    transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.18s ease;
+  transition-delay: 0s;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.folder-card.is-open .folder-doc {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition-delay: calc(0.08s + var(--i, 0) * 0.045s);
+}
+
+.folder-doc:last-child {
+  margin-bottom: 0;
+}
+
+.doc-sheet {
   display: flex;
   align-items: center;
   gap: 10px;
   padding: 8px 10px;
+  background: color-mix(in srgb, var(--bg) 40%, var(--bg-card));
+  border: 1px solid var(--border);
   border-radius: 8px;
-  font-size: 12.5px;
-  color: var(--text);
-  cursor: pointer;
-  opacity: 0;
-  transform: translateY(8px);
-  transition:
-    background 0.18s ease,
-    color 0.18s ease,
-    opacity 0.28s ease,
-    transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
-  transition-delay: 0s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
 }
 
-.folder-group.open .accordion-item {
-  opacity: 1;
-  transform: translateY(0);
-  transition-delay: calc(0.05s + var(--i, 0) * 0.04s);
+.folder-doc:hover .doc-sheet {
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  transform: translateY(-1px);
 }
 
-.accordion-item:hover {
-  background: color-mix(in srgb, var(--accent) 12%, transparent);
-  color: var(--accent);
-}
-
-.accordion-item img {
-  width: 30px;
-  height: 30px;
-  border-radius: 7px;
+.doc-sheet img {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
   object-fit: cover;
   flex-shrink: 0;
   border: 1px solid var(--border);
 }
 
-.accordion-item span {
-  line-height: 1.3;
+.doc-info {
+  min-width: 0;
+  flex: 1;
+}
+
+.doc-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.25;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.doc-place {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.folder-doc:hover .doc-title {
+  color: var(--accent);
 }
 
 .toc { margin-top: auto; border-top: 1px solid var(--border); padding: 12px; }
