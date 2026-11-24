@@ -787,10 +787,10 @@ function bindEvents() {
   if ($("nav-home")) $("nav-home").addEventListener("click", function (e) { e.preventDefault(); closeArticle(); });
   if ($("mobile-menu-btn")) $("mobile-menu-btn").addEventListener("click", openMobileMenu);
   if ($("sidebar-overlay")) $("sidebar-overlay").addEventListener("click", closeMobileMenu);
+  if ($("sidebar-close-btn")) $("sidebar-close-btn").addEventListener("click", closeMobileMenu);
 }
 
 var THEME_STORAGE_KEY = "beytulhikme-theme";
-
 function applySavedTheme() {
   var savedTheme = null;
   try {
