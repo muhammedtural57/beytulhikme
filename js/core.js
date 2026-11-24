@@ -575,15 +575,86 @@ function closeArticle() {
   if (articleView) articleView.classList.add("hidden");
   if (sliderView) sliderView.classList.remove("hidden");
 
+  closeMobileMenu();
+
+  // Slider’ı baştan düzgün konumlandır
   gsap.killTweensOf(".cover");
+  gsap.killTweensOf(".card");
+  gsap.killTweensOf(".card-content");
+  gsap.killTweensOf(".details");
+  gsap.killTweensOf("#pagination");
+  gsap.killTweensOf(".top-nav");
+  gsap.killTweensOf(".indicator");
+
+  // cover’ı ekran dışına al
   gsap.set(".cover", { x: window.innerWidth + 400, opacity: 0 });
 
-  var detailsActive = detailsEven ? "#details-even" : "#details-odd";
-  gsap.set(detailsActive, { opacity: 1, x: 0 });
-  gsap.set("#pagination", { opacity: 1 });
-  gsap.set(".top-nav", { y: 0, opacity: 1 });
+  // Kartları ve metinleri yeniden yerleştir (init’in sade hali)
+  if (data.length) {
+    var active = order[0];
+    var rest = order.slice(1);
+    var detailsActive = detailsEven ? "#details-even" : "#details-odd";
+    var detailsInactive = detailsEven ? "#details-odd" : "#details-even";
+    var off = getOffsets();
+    offsetTop = off.top;
+    offsetLeft = off.left;
+    var width = window.innerWidth;
+    var height = window.innerHeight;
 
-  closeMobileMenu();
+    // Aktif kart tam ekran
+    gsap.set(getCard(active), {
+      x: 0, y: 0,
+      width: width, height: height,
+      borderRadius: 0, scale: 1, zIndex: 20, opacity: 1
+    });
+    gsap.set(getCardContent(active), { x: 0, y: 0, opacity: 0 });
+
+    // Diğer kartlar alt sırada
+    rest.forEach(function (i, index) {
+      gsap.set(getCard(i), {
+        x: offsetLeft + index * (off.cW + off.g),
+        y: offsetTop,
+        width: off.cW, height: off.cH,
+        borderRadius: 10, scale: 1, zIndex: 30, opacity: 1
+      });
+      gsap.set(getCardContent(i), {
+        x: offsetLeft + index * (off.cW + off.g),
+        y: offsetTop + off.cH - 80,
+        opacity: 1, zIndex: 40
+      });
+      gsap.set(getSliderItem(i), { x: (index + 1) * numberSize });
+    });
+
+    // Aktif kart metinleri
+    var card = data[active];
+    if (card) {
+      var placeEl = document.querySelector(detailsActive + " .place-box .text");
+      var title1El = document.querySelector(detailsActive + " .title-1");
+      var title2El = document.querySelector(detailsActive + " .title-2");
+      var descEl = document.querySelector(detailsActive + " .desc");
+      if (placeEl) placeEl.textContent = card.place || "";
+      if (title1El) title1El.textContent = card.title || "";
+      if (title2El) title2El.textContent = card.title2 || "";
+      if (descEl) descEl.textContent = card.description || "";
+    }
+
+    gsap.set(detailsActive, { opacity: 1, x: 0, zIndex: 22 });
+    gsap.set(detailsInactive, { opacity: 0, zIndex: 12 });
+    gsap.set(detailsActive + " .text", { y: 0 });
+    gsap.set(detailsActive + " .title-1", { y: 0 });
+    gsap.set(detailsActive + " .title-2", { y: 0 });
+    gsap.set(detailsActive + " .desc", { y: 0 });
+    gsap.set(detailsActive + " .cta", { y: 0 });
+
+    gsap.set("#pagination", { opacity: 1, bottom: 20, left: 16, y: 0 });
+    gsap.set(".top-nav", { y: 0, opacity: 1 });
+    gsap.set(getSliderItem(active), { x: 0 });
+    gsap.set(".progress-sub-foreground", {
+      width: ((active + 1) / order.length) * 100 + "%"
+    });
+    gsap.set(".indicator", { scaleX: 0 });
+  }
+
   startLoop();
 }
 
