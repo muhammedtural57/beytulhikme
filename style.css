@@ -642,40 +642,119 @@ body:not(.light) .folder-front {
   border-bottom: 1px solid var(--border);
 }
 
-/* Küçük klasör ikonu */
+/* ===== Küçük animasyonlu klasör ikonu (sadece A–Z harfinin önü) ===== */
 .acc-folder {
   position: relative;
-  width: 16px;
-  height: 16px;
+  width: 22px;
+  height: 18px;
   flex-shrink: 0;
-  color: var(--text-muted);
+  margin-right: 2px;
 }
 
-.acc-folder svg {
+/* Klasör arka yüzü */
+.acc-folder .f-back {
   position: absolute;
-  inset: 0;
-  width: 16px;
-  height: 16px;
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  left: 0;
+  bottom: 0;
+  width: 20px;
+  height: 14px;
+  background: #c9a227;
+  border-radius: 2px 3px 2px 2px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
 }
 
-.acc-folder .f-open {
-  opacity: 0;
-  transform: scale(0.7);
+/* Üst sekme (tab) */
+.acc-folder .f-back::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -5px;
+  width: 9px;
+  height: 6px;
+  background: #c9a227;
+  border-radius: 2px 3px 0 0;
 }
 
-.accordion-header.open .acc-folder {
-  color: var(--accent);
+/* Evraklar (kapalıyken üstten görünür) */
+.acc-folder .f-paper {
+  position: absolute;
+  left: 3px;
+  width: 14px;
+  height: 11px;
+  background: #f5f0e6;
+  border-radius: 1px;
+  box-shadow: 0 0 0 0.5px rgba(0,0,0,0.08);
+  transition: transform 0.35s cubic-bezier(0.34, 1.4, 0.64, 1),
+              opacity 0.25s ease;
+  transform-origin: bottom center;
 }
 
-.accordion-header.open .acc-folder .f-closed {
-  opacity: 0;
-  transform: scale(0.7);
+body:not(.light) .acc-folder .f-paper {
+  background: #e8e0d0;
 }
 
-.accordion-header.open .acc-folder .f-open {
-  opacity: 1;
-  transform: scale(1);
+.acc-folder .p1 {
+  bottom: 3px;
+  transform: translateY(-2px) rotate(-4deg);
+  z-index: 1;
+}
+
+.acc-folder .p2 {
+  bottom: 3px;
+  transform: translateY(-4px) rotate(3deg);
+  z-index: 2;
+  opacity: 0.95;
+}
+
+.acc-folder .p3 {
+  bottom: 3px;
+  transform: translateY(-6px) rotate(-1deg);
+  z-index: 3;
+  opacity: 0.9;
+}
+
+/* Klasör ön kapağı */
+.acc-folder .f-front {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 20px;
+  height: 12px;
+  background: linear-gradient(180deg, #e0b84a 0%, #c9a227 100%);
+  border-radius: 0 0 2px 2px;
+  z-index: 4;
+  box-shadow: 0 -1px 0 rgba(255,255,255,0.15) inset;
+  transition: transform 0.35s cubic-bezier(0.34, 1.4, 0.64, 1);
+  transform-origin: bottom center;
+}
+
+/* ——— AÇIK DURUM ——— */
+.accordion-header.open .acc-folder .f-front {
+  /* Kapak hafif açılır / geriye yatar */
+  transform: perspective(40px) rotateX(-28deg) translateY(1px);
+  opacity: 0.92;
+}
+
+.accordion-header.open .acc-folder .p1 {
+  transform: translateY(-9px) rotate(-8deg) scale(1.02);
+}
+
+.accordion-header.open .acc-folder .p2 {
+  transform: translateY(-12px) rotate(6deg) scale(1.02);
+}
+
+.accordion-header.open .acc-folder .p3 {
+  transform: translateY(-15px) rotate(-3deg) scale(1.03);
+}
+
+/* Koyu temada klasör rengi */
+body:not(.light) .acc-folder .f-back,
+body:not(.light) .acc-folder .f-back::before {
+  background: #b8922a;
+}
+
+body:not(.light) .acc-folder .f-front {
+  background: linear-gradient(180deg, #d4a93a 0%, #b8922a 100%);
 }
 
 .acc-letter {
@@ -736,7 +815,6 @@ body:not(.light) .folder-front {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
 .toc { margin-top: auto; border-top: 1px solid var(--border); padding: 12px; }
 .toc-header {
   display: flex; align-items: center; gap: 8px; font-size: 11px;
