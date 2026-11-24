@@ -658,9 +658,9 @@ body:not(.light) .folder-front {
   bottom: 0;
   width: 20px;
   height: 14px;
-  background: #c9a227;
+  background: #d29b22;
   border-radius: 2px 3px 2px 2px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.14);
 }
 
 /* Üst sekme (tab) */
@@ -671,7 +671,7 @@ body:not(.light) .folder-front {
   top: -5px;
   width: 9px;
   height: 6px;
-  background: #c9a227;
+  background: #d29b22;
   border-radius: 2px 3px 0 0;
 }
 
@@ -681,16 +681,16 @@ body:not(.light) .folder-front {
   left: 3px;
   width: 14px;
   height: 11px;
-  background: #f5f0e6;
+  background: #faf6ee;
   border-radius: 1px;
-  box-shadow: 0 0 0 0.5px rgba(0,0,0,0.08);
+  box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.08);
   transition: transform 0.35s cubic-bezier(0.34, 1.4, 0.64, 1),
               opacity 0.25s ease;
   transform-origin: bottom center;
 }
 
 body:not(.light) .acc-folder .f-paper {
-  background: #e8e0d0;
+  background: #d6cebe;
 }
 
 .acc-folder .p1 {
@@ -720,17 +720,16 @@ body:not(.light) .acc-folder .f-paper {
   bottom: 0;
   width: 20px;
   height: 12px;
-  background: linear-gradient(180deg, #e0b84a 0%, #c9a227 100%);
+  background: linear-gradient(180deg, #e7b844 0%, #c98c18 100%);
   border-radius: 0 0 2px 2px;
   z-index: 4;
-  box-shadow: 0 -1px 0 rgba(255,255,255,0.15) inset;
+  box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.18) inset;
   transition: transform 0.35s cubic-bezier(0.34, 1.4, 0.64, 1);
   transform-origin: bottom center;
 }
 
 /* ——— AÇIK DURUM ——— */
 .accordion-header.open .acc-folder .f-front {
-  /* Kapak hafif açılır / geriye yatar */
   transform: perspective(40px) rotateX(-28deg) translateY(1px);
   opacity: 0.92;
 }
@@ -750,11 +749,11 @@ body:not(.light) .acc-folder .f-paper {
 /* Koyu temada klasör rengi */
 body:not(.light) .acc-folder .f-back,
 body:not(.light) .acc-folder .f-back::before {
-  background: #b8922a;
+  background: #c49222;
 }
 
 body:not(.light) .acc-folder .f-front {
-  background: linear-gradient(180deg, #d4a93a 0%, #b8922a 100%);
+  background: linear-gradient(180deg, #e2b238 0%, #b58216 100%);
 }
 
 .acc-letter {
