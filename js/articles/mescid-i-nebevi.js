@@ -8,7 +8,7 @@ window.ARTICLES["mescid-i-nebevi"] = {
   arabic: "المسجد النبوي",
   lead: "Hz. Peygamber tarafından Medine’de inşa edilen, müslümanların en kutsal saydığı üç mescidden biri.",
   author: "NEBİ BOZKURT",
-  relatedFile: "MEDSCİD-İ NEBEVİ",
+  relatedFile: "MESCİD-İ NEBEVİ",
   summaryItems: [
     {
       title: "İsim, Konum ve Fazileti",
