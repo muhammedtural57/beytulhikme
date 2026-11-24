@@ -1018,6 +1018,25 @@ body:not(.light) .summary-section-item::before { background: #334155; }
   background: color-mix(in srgb, var(--text) 5%, transparent);
 }
 
+.site-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  display: block;
+}
+
+.top-nav .site-logo {
+  width: 28px;
+  height: 28px;
+}
+
+.sidebar-logo .site-logo {
+  width: 30px;
+  height: 30px;
+}
+
 @media (min-width: 768px) and (max-width: 1180px) {
   .sidebar { width: 220px; }
   .right-panel { width: 220px; padding: 14px 12px; }
