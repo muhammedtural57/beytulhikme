@@ -364,7 +364,7 @@ body:not(.light) .dn-clouds {
 .dn-knob {
   position: absolute;
   top: 3px;
-  left: 3px;
+  left: 37px; /* light modda sağdaki güneşin üzerine gelmesi için */
   width: 24px;
   height: 24px;
   border-radius: 50%;
@@ -375,7 +375,7 @@ body:not(.light) .dn-clouds {
   pointer-events: none;
 }
 body:not(.light) .dn-knob {
-  left: 37px;
+  left: 3px; /* koyu modda soldaki ayın üzerine gelmesi için */
   border-color: rgba(255,255,255,0.2);
 }
 
@@ -702,8 +702,8 @@ body:not(.light) .summary-section-item::before { background: #334155; }
   .article-body { font-size: 14.5px; }
   .lightbox-prev, .lightbox-next { width: 40px; height: 40px; font-size: 26px; }
   .dn-switch { width: 56px; height: 28px; }
-  .dn-knob { width: 22px; height: 22px; }
-  body:not(.light) .dn-knob { left: 31px; }
+  .dn-knob { width: 22px; height: 22px; left: 31px; } /* light modda sağdaki güneşin üzerine */
+  body:not(.light) .dn-knob { left: 3px; } /* koyu modda soldaki ayın üzerine */
   .dn-sun { width: 14px; height: 14px; margin-top: -7px; right: 6px; }
   .dn-moon { font-size: 12px; left: 6px; }
 }
